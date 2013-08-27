@@ -91,7 +91,7 @@ int main()
 		for(i=1; i<(row-1); i=(i+2))
 		{
 			if((i == start) || ((i-start) == (nthreads*chunk*2)))
-				count = i*column;
+				count = i*column; // giving the new value to count when a new chunk starts
 			for(j=1; j<(column-1); j++)
 			{
 				if((i == start) || ((i-start) == (nthreads*chunk*2)))
