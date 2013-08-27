@@ -1,4 +1,4 @@
-								/*Both image and count in shared*/
+							/*Both image and count in shared*/
 					/*	1. Experiments on Union-Find Algorithms for the Disjoint-Set Data Structure
 						2. A New Two-Scan Algorithm for Labeling Connected Components in Binary Images
 						3. Multi-core spanning forest algorithms using the disjoint-set data structure	    */
@@ -39,6 +39,7 @@ int main()
 			row++;
 	}
 	column = chart/row ;
+	//row and column is increased by 2 as we are taking that the boundary of image is background
 	row = row + 2;
 	column = column +2;
 	image = (int **)malloc(row * sizeof(int *));
@@ -75,7 +76,7 @@ int main()
        	num_iter = (row-2)/2;
 	if((row % 2) == 1)
 		num_iter = num_iter + 1;
-		
+
 /*	clock_gettime(CLOCK_REALTIME,&tp);
 	t1 = (((double)tp.tv_sec) * 1000000) + (((double)tp.tv_nsec) / 1000) ; */
        		
@@ -87,6 +88,7 @@ int main()
 		chunk = num_iter/nthreads ;
 		start = 1 + tid*(chunk*2);
 		#pragma omp for schedule(static,chunk)
+		// decision tree
 		for(i=1; i<(row-1); i=(i+2))
 		{
 			for(j=1; j<(column-1); j++)
@@ -136,7 +138,7 @@ int main()
 							}
 						}
 					}
-						
+
 				}
 				else
 				{
@@ -223,7 +225,7 @@ int main()
 			}
 		}
 	} //parallel region ends
-	
+
 	count = count-1;
 	chunk = num_iter/nthreads ;
 	size = 2*chunk ;
@@ -257,10 +259,10 @@ int main()
 	t1 = (((double)tp.tv_sec) * 1000000) + (((double)tp.tv_nsec) / 1000) ;
 	/*time_spent = t2 -t1;
 	printf("%f\n",time_spent);*/
-	
+
 	#pragma omp parallel default(none) shared(p,count)
 		flatten(p,count);
-		
+
 	#pragma omp parallel default(none) shared(row,column,label,p) private(tid,i,j)
 	{
 		#pragma omp for schedule(dynamic)
@@ -270,7 +272,7 @@ int main()
 				label[i][j] = p[label[i][j]];
 		}
 	}
-	
+
 	clock_gettime(CLOCK_REALTIME,&tp1);
 	t2 = (((double)tp1.tv_sec) * 1000000) + (((double)tp1.tv_nsec) / 1000) ;
 	time_spent = t2 -t1;
@@ -278,7 +280,7 @@ int main()
 //	fseek(fp2,0,SEEK_END);
 //	fprintf(fp2,"%f\n",time_spent);
 
-	
+
 	for(i = 1; i<(row-1); i++)
 	{
 		for(j=1;j<(column-1);j++)
