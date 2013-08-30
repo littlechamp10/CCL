@@ -27,7 +27,7 @@ int main()
 	printf("Input file name: ");
 	scanf("%s",f_name);
 	fp = fopen(f_name,"r");
-	fp1 = fopen("Test_Output.txt","w");
+//	fp1 = fopen("Test_Output.txt","w");
 //	fp2 = fopen("Test_Results.txt","a+");
 //	fp3 = fopen("Comp.txt","a+");
 	while(fscanf(fp,"%d",&num) != EOF )
@@ -91,7 +91,7 @@ int main()
 		for(i=1; i<(row-1); i=(i+2))
 		{
 			if((i == start) || ((i-start) == (nthreads*chunk*2)))
-				count = i*column; // giving the new value to count when a new chunk starts
+				count = i*column;
 			for(j=1; j<(column-1); j++)
 			{
 				if((i == start) || ((i-start) == (nthreads*chunk*2)))
@@ -215,6 +215,11 @@ int main()
 		}
 	} //parallel region ends
 	
+/*	clock_gettime(CLOCK_REALTIME,&tp1);
+	t2 = (((double)tp1.tv_sec) * 1000000) + (((double)tp1.tv_nsec) / 1000) ;
+	time_spent = t2 -t1;
+	printf("%f\n",time_spent);*/
+	
 	chunk = num_iter/nthreads ;
 	size = 2*chunk ;
 	#pragma omp parallel default(none) shared(row,column,label,p,size) private(tid,i,j)
@@ -241,6 +246,12 @@ int main()
 		}
 	}
 	
+	clock_gettime(CLOCK_REALTIME,&tp1);
+	t2 = (((double)tp1.tv_sec) * 1000000) + (((double)tp1.tv_nsec) / 1000) ;
+	time_spent = t2 -t1;
+	printf("%f\n",time_spent);
+	
+	
 	p_size = (row*column);
 	
 	#pragma omp parallel default(none) shared(p,p_size)
@@ -258,19 +269,21 @@ int main()
 		}
 	}
 	
-	clock_gettime(CLOCK_REALTIME,&tp1);
+/*	clock_gettime(CLOCK_REALTIME,&tp1);
 	t2 = (((double)tp1.tv_sec) * 1000000) + (((double)tp1.tv_nsec) / 1000) ;
 	time_spent = t2 -t1;
 //	fseek(fp2,0,SEEK_END);
 //	fprintf(fp2,"%f\n",time_spent);
-	printf("%f\n",time_spent);
+	printf("%f\n",time_spent);*/
 	
-	for(i = 1; i<(row-1); i++)
+/*	for(i = 1; i<(row-1); i++)
 	{
 		for(j=1;j<(column-1);j++)
 			fprintf(fp1,"%d ",label[i][j]);
 		fprintf(fp1,"\n");
 	}
+*/
+	fclose(fp);
 	return(0);
 }
 
