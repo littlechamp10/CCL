@@ -14,12 +14,12 @@ int main()
 	int **image,**label,*p;
 	FILE *fp,*fp1,*fp2;
 	char ch,f_name[50];
-	double time_spent,t1,t2,t3;
+	double time_spent,t1,t2;
 	struct timespec tp,tp1;
 	printf("Input file name: ");
 	scanf("%s",f_name);
 	fp = fopen(f_name,"r");
-	fp1 = fopen("Test_Output.txt","w");
+//	fp1 = fopen("Test_Output.txt","w");
 //	fp2 = fopen("Test_Results.txt","a+");
 //	fp3 = fopen("Comp.txt","a+");
 	while(fscanf(fp,"%d",&num) != EOF )
@@ -79,12 +79,13 @@ int main()
 		}
 	}
 	// Scaning Phase 
-/*	clock_gettime(CLOCK_REALTIME,&tp);
+	clock_gettime(CLOCK_REALTIME,&tp);
 	
-	t1 = (((double)tp.tv_sec) * 1000000) + (((double)tp.tv_nsec) / 1000) ;*/
+	t1 = (((double)tp.tv_sec) * 1000000) + (((double)tp.tv_nsec) / 1000) ;
 	
 	for(i=1; i<(row-1); i=i+2)
 	{
+		//count = (i-1)*j + 1;
 		for(j=1; j<(column-1); j++)
 		{
 			if(image[i][j] == 1)
@@ -162,12 +163,15 @@ int main()
 			}
 		}
 	}
-	clock_gettime(CLOCK_REALTIME,&tp);
-	t1 = (((double)tp.tv_sec) * 1000000) + (((double)tp.tv_nsec) / 1000) ;
-	/*time_spent = t3 -t1;
-	printf("%f\n",time_spent);*/
 	
 	count = count-1 ;
+	
+	clock_gettime(CLOCK_REALTIME,&tp1);
+	t2 = (((double)tp1.tv_sec) * 1000000) + (((double)tp1.tv_nsec) / 1000) ;
+	time_spent = t2 -t1;
+//	fseek(fp2,0,SEEK_END);
+//	fprintf(fp2,"%f\n",time_spent);
+	printf("%f\n",time_spent);
 	
 	//analysis phase
 	
@@ -181,22 +185,17 @@ int main()
 			label[i][j] = p[label[i][j]];
 	}
 	
-	clock_gettime(CLOCK_REALTIME,&tp1);
-	t2 = (((double)tp1.tv_sec) * 1000000) + (((double)tp1.tv_nsec) / 1000) ;
-	time_spent = t2 -t1;
-//	fseek(fp2,0,SEEK_END);
-//	fprintf(fp2,"%f\n",time_spent);
-	printf("%f\n",time_spent);
 	
-	/*for(i = 1; i< row-1; i++)
+	
+/*	for(i = 1; i< row-1; i++)
 	{
 		for(j=1;j<column-1;j++)
 			fprintf(fp1,"%d ",label[i][j]);
 		fprintf(fp1,"\n");
-	}*/
-
+	}
+*/
 	fclose(fp);
-	fclose(fp1);
+//	fclose(fp1);
 //	fclose(fp2);
 	return(0);			
 }
@@ -241,12 +240,15 @@ void flatten(int *p, int size)
 	int k = 1,i;
 	for(i=1;i <= size; i++)
 	{
-		if(p[i] < i)
-			p[i] = p[p[i]];
-		else
+		//if(p[i] != 0)
 		{
-			p[i] = k;
-			k++;
+			if(p[i] < i)
+				p[i] = p[p[i]];
+			else
+			{
+				p[i] = k;
+				k++;
+			}
 		}
 	}
 //	fseek(fp3,0,SEEK_END);
