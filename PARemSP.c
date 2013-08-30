@@ -25,7 +25,7 @@ int main()
 	printf("Input file name: ");
 	scanf("%s",f_name);
 	fp = fopen(f_name,"r");
-	fp1 = fopen("Test_Output.txt","w");
+//	fp1 = fopen("Test_Output.txt","w");
 //	fp2 = fopen("Test_Results.txt","a+");
 //	fp3 = fopen("Comp.txt","a+");
 	while(fscanf(fp,"%d",&num) != EOF )
@@ -77,8 +77,8 @@ int main()
 	if((row % 2) == 1)
 		num_iter = num_iter + 1;
 
-/*	clock_gettime(CLOCK_REALTIME,&tp);
-	t1 = (((double)tp.tv_sec) * 1000000) + (((double)tp.tv_nsec) / 1000) ; */
+	clock_gettime(CLOCK_REALTIME,&tp);
+	t1 = (((double)tp.tv_sec) * 1000000) + (((double)tp.tv_nsec) / 1000) ;
        		
        	//parallel region starts-- labeling every chunk like a image taking no relation b/w each other 	
 	#pragma omp parallel default(none) shared(nthreads,row,column,label,p,num_iter,image,count) private(tid,i,j,start,chunk)
@@ -225,6 +225,11 @@ int main()
 			}
 		}
 	} //parallel region ends
+	
+	clock_gettime(CLOCK_REALTIME,&tp1);
+	t2 = (((double)tp1.tv_sec) * 1000000) + (((double)tp1.tv_nsec) / 1000) ;
+	time_spent = t2 -t1;
+	printf("%f\n",time_spent); 
 
 	count = count-1;
 	chunk = num_iter/nthreads ;
@@ -255,10 +260,11 @@ int main()
 		}
 	}
 	//parallel region ends
-	clock_gettime(CLOCK_REALTIME,&tp);
-	t1 = (((double)tp.tv_sec) * 1000000) + (((double)tp.tv_nsec) / 1000) ;
-	/*time_spent = t2 -t1;
-	printf("%f\n",time_spent);*/
+	
+/*	clock_gettime(CLOCK_REALTIME,&tp1);
+	t2 = (((double)tp1.tv_sec) * 1000000) + (((double)tp1.tv_nsec) / 1000) ;
+	time_spent = t2 -t1;
+	printf("%f\n",time_spent); */
 
 	#pragma omp parallel default(none) shared(p,count)
 		flatten(p,count);
@@ -273,20 +279,19 @@ int main()
 		}
 	}
 
-	clock_gettime(CLOCK_REALTIME,&tp1);
-	t2 = (((double)tp1.tv_sec) * 1000000) + (((double)tp1.tv_nsec) / 1000) ;
-	time_spent = t2 -t1;
-	printf("%f\n",time_spent); 
+
 //	fseek(fp2,0,SEEK_END);
 //	fprintf(fp2,"%f\n",time_spent);
 
 
-	for(i = 1; i<(row-1); i++)
+/*	for(i = 1; i<(row-1); i++)
 	{
 		for(j=1;j<(column-1);j++)
 			fprintf(fp1,"%d ",label[i][j]);
 		fprintf(fp1,"\n");
 	}
+*/
+	fclose(fp);
 	return(0);
 }
 
