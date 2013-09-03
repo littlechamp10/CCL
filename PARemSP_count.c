@@ -43,6 +43,7 @@ int main()
 	column = chart/row ;
 	row = row + 2;
 	column = column +2;
+	chart = row * column;
 	image = (int **)malloc(row * sizeof(int *));
 	label = (int **)malloc(row * sizeof(int *));
 	p = (int *)malloc(chart * sizeof(int ));
@@ -81,11 +82,12 @@ int main()
 	clock_gettime(CLOCK_REALTIME,&tp);
 	t1 = (((double)tp.tv_sec) * 1000000) + (((double)tp.tv_nsec) / 1000) ;
        		
-	#pragma omp parallel default(none) shared(nthreads,row,column,label,p,num_iter,image) private(count,tid,i,j,start,chunk)
+	#pragma omp parallel default(none) shared(nthreads,row,column,label,p,num_iter,image) private(count,tid,i,j,start,chunk,size)
 	{
 		tid = omp_get_thread_num();
 		nthreads = omp_get_num_threads();
 		chunk = num_iter/nthreads ;
+		size = 2 * chunk;
 		start = 1 + tid*(chunk*2);
 		#pragma omp for schedule(static,chunk)
 		for(i=1; i<(row-1); i=(i+2))
@@ -213,21 +215,10 @@ int main()
 				}
 			}
 		}
-	} //parallel region ends
-	
-/*	clock_gettime(CLOCK_REALTIME,&tp1);
-	t2 = (((double)tp1.tv_sec) * 1000000) + (((double)tp1.tv_nsec) / 1000) ;
-	time_spent = t2 -t1;
-	printf("%f\n",time_spent);*/
-	
-	chunk = num_iter/nthreads ;
-	size = 2*chunk ;
-	#pragma omp parallel default(none) shared(row,column,label,p,size) private(tid,i,j)
-	{
-		#pragma omp for schedule(static)
+		#pragma omp for schedule(dynamic)
 		for( i= (1+size);i<(row-1);i=(i+size))
 		{
-			tid = omp_get_thread_num();
+		//	tid = omp_get_thread_num();
 			for(j=1;j<(column-1);j++)
 			{
 				if(label[i][j] != 0)
@@ -254,8 +245,6 @@ int main()
 	
 	p_size = chart;
 	
-	#pragma omp parallel default(none) shared(p,p_size)
-	
 	flatten(p,p_size);
 	
 	
@@ -276,12 +265,12 @@ int main()
 //	fprintf(fp2,"%f\n",time_spent);
 	printf("%f\n",time_spent);*/
 	
-	for(i = 1; i<(row-1); i++)
+/*	for(i = 1; i<(row-1); i++)
 	{
 		for(j=1;j<(column-1);j++)
 			fprintf(fp1,"%d ",label[i][j]);
 		fprintf(fp1,"\n");
-	}
+	}*/
 	return(0);
 }
 
@@ -369,19 +358,22 @@ void merger (int *p, int x, int y)
 void flatten(int *p, int size)
 {
 	int k = 1,i;
-	#pragma omp for schedule(dynamic) private(i)
-	for(i=1;i <= size; i++)
+	#pragma omp parallel default(none) shared(p,size,k)
 	{
-			if(p[i] < i)
-				p[i] = p[p[i]];
-			else
-			{
-				#pragma omp critical
+		#pragma omp for schedule(dynamic) private(i)
+		for(i=1;i <= size; i++)
+		{
+				if(p[i] < i)
+					p[i] = p[p[i]];
+				else
 				{
-					p[i] = k;
-					k++;
+					#pragma omp critical
+					{
+						p[i] = k;
+						k++;
+					}
 				}
-			}
+		}
 	}
 //	fseek(fp3,0,SEEK_END);
 //	fprintf(fp3,"%d\n",k-1);
