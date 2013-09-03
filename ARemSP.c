@@ -19,7 +19,7 @@ int main()
 	printf("Input file name: ");
 	scanf("%s",f_name);
 	fp = fopen(f_name,"r");
-//	fp1 = fopen("Test_Output.txt","w");
+	fp1 = fopen("Test_Output.txt","w");
 //	fp2 = fopen("Test_Results.txt","a+");
 //	fp3 = fopen("Comp.txt","a+");
 	while(fscanf(fp,"%d",&num) != EOF )
@@ -37,7 +37,7 @@ int main()
 	column = column +2;
 	image = (int **)malloc(row * sizeof(int *));
 	label = (int **)malloc(row * sizeof(int *));
-	p = (int *)malloc(chart * sizeof(int *));
+	p = (int *)malloc(chart * sizeof(int));
 	if(image == NULL)
 	{
 		fprintf(stderr, "out of memory\n");
@@ -187,15 +187,15 @@ int main()
 	
 	
 	
-/*	for(i = 1; i< row-1; i++)
+	for(i = 1; i< row-1; i++)
 	{
 		for(j=1;j<column-1;j++)
 			fprintf(fp1,"%d ",label[i][j]);
 		fprintf(fp1,"\n");
 	}
-*/
+
 	fclose(fp);
-//	fclose(fp1);
+	fclose(fp1);
 //	fclose(fp2);
 	return(0);			
 }
