@@ -27,7 +27,7 @@ int main()
 	printf("Input file name: ");
 	scanf("%s",f_name);
 	fp = fopen(f_name,"r");
-//	fp1 = fopen("Test_Output.txt","w");
+	fp1 = fopen("Test_Output.txt","w");
 //	fp2 = fopen("Test_Results.txt","a+");
 //	fp3 = fopen("Comp.txt","a+");
 	while(fscanf(fp,"%d",&num) != EOF )
@@ -45,8 +45,8 @@ int main()
 	column = column +2;
 	image = (int **)malloc(row * sizeof(int *));
 	label = (int **)malloc(row * sizeof(int *));
-	p = (int *)malloc(chart * sizeof(int *));
-	lock_array = (omp_lock_t *)malloc(chart * sizeof(omp_lock_t *));
+	p = (int *)malloc(chart * sizeof(int ));
+	lock_array = (omp_lock_t *)malloc(chart * sizeof(omp_lock_t ));
 	if((image == NULL) || (label == NULL) || (p == NULL) || (lock_array == NULL))
 	{
 		printf("out of memory\n");
@@ -252,7 +252,7 @@ int main()
 	printf("%f\n",time_spent);
 	
 	
-	p_size = (row*column);
+	p_size = chart;
 	
 	#pragma omp parallel default(none) shared(p,p_size)
 	
@@ -276,14 +276,12 @@ int main()
 //	fprintf(fp2,"%f\n",time_spent);
 	printf("%f\n",time_spent);*/
 	
-/*	for(i = 1; i<(row-1); i++)
+	for(i = 1; i<(row-1); i++)
 	{
 		for(j=1;j<(column-1);j++)
 			fprintf(fp1,"%d ",label[i][j]);
 		fprintf(fp1,"\n");
 	}
-*/
-	fclose(fp);
 	return(0);
 }
 
