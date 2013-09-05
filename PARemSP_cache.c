@@ -364,7 +364,7 @@ void flatten(int *p, int size)
 	#pragma omp parallel default(none) shared(p,size,k)
 	{
 		#pragma omp for schedule(dynamic) private(i)
-		for(i=1;i <= size; i++)
+		for(i=1;i < size; i++)
 		{
 				if(p[i] < i)
 					p[i] = p[p[i]];
