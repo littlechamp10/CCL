@@ -12,7 +12,7 @@
 int merge(int *,int, int);
 void merger(int *,int, int);
 void flatten(int *,int);
-FILE *fp3;
+//FILE *fp3;
 omp_lock_t *lock_array;
 int main()
 {
@@ -44,10 +44,10 @@ int main()
 	row = row + 2;
 	column = column +2;
 	chart = row * column;
-	image = (int **)malloc(row * sizeof(int *));
-	label = (int **)malloc(row * sizeof(int *));
-	p = (int *)malloc(chart * sizeof(int ));
-	lock_array = (omp_lock_t *)malloc(chart * sizeof(omp_lock_t ));
+	image = (int **)calloc(row, sizeof(int *));
+	label = (int **)calloc(row, sizeof(int *));
+	p = (int *)calloc(chart, sizeof(int ));
+	lock_array = (omp_lock_t *)calloc(chart, sizeof(omp_lock_t ));
 	if((image == NULL) || (label == NULL) || (p == NULL) || (lock_array == NULL))
 	{
 		printf("out of memory\n");
@@ -55,8 +55,8 @@ int main()
 	}
 	for(i = 0; i < row; i++)
 	{
-		image[i] =(int *) malloc(column * sizeof(int));
-		label[i] =(int *) malloc(column * sizeof(int));
+		image[i] =(int *) calloc(column, sizeof(int));
+		label[i] =(int *) calloc(column, sizeof(int));
 		if((image[i] == NULL) || (label[i] == NULL))
 		{
 			printf("out of memory\n");
@@ -271,6 +271,17 @@ int main()
 			fprintf(fp1,"%d ",label[i][j]);
 		fprintf(fp1,"\n");
 	}*/
+	for(i=0;i<row;i++)
+	{
+		free(image[i]);
+		free(label[i]);
+	}
+	free(image);
+	free(label);
+	free(p);
+	free(lock_array);
+	fclose(fp);
+	fclose(fp1);
 	return(0);
 }
 
@@ -361,7 +372,7 @@ void flatten(int *p, int size)
 	#pragma omp parallel default(none) shared(p,size,k)
 	{
 		#pragma omp for schedule(dynamic) private(i)
-		for(i=1;i <= size; i++)
+		for(i=1;i < size; i++)
 		{
 				if(p[i] < i)
 					p[i] = p[p[i]];
