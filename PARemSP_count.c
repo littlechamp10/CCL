@@ -82,7 +82,7 @@ int main()
 	clock_gettime(CLOCK_REALTIME,&tp);
 	t1 = (((double)tp.tv_sec) * 1000000) + (((double)tp.tv_nsec) / 1000) ;
        		
-	#pragma omp parallel default(none) shared(nthreads,row,column,label,p,num_iter,image) private(count,tid,i,j,start,chunk,size)
+	#pragma omp parallel default(shared) private(count,tid,i,j,start,chunk,size,nthreads)
 	{
 		tid = omp_get_thread_num();
 		nthreads = omp_get_num_threads();
@@ -248,7 +248,7 @@ int main()
 	flatten(p,p_size);
 	
 	
-	#pragma omp parallel default(none) shared(row,column,label,p) private(tid,i,j)
+	#pragma omp parallel default(shared) private(tid,i,j)
 	{
 		#pragma omp for schedule(dynamic)
 		for(i=1;i<(row-1);i++)
@@ -369,7 +369,7 @@ void merger (int *p, int x, int y)
 void flatten(int *p, int size)
 {
 	int k = 1,i;
-	#pragma omp parallel default(none) shared(p,size,k)
+	#pragma omp parallel default(shared)
 	{
 		#pragma omp for schedule(dynamic) private(i)
 		for(i=1;i < size; i++)
