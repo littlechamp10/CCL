@@ -27,8 +27,8 @@ int main()
 	printf("Input file name: ");
 	scanf("%s",f_name);
 	fp = fopen(f_name,"r");
-	fp1 = fopen("Test_Output.txt","w");
-//	fp2 = fopen("Test_Results.txt","a+");
+//	fp1 = fopen("Test_Output.txt","w");
+//	fp2 = fopen("Test_Results_1.txt","a+");
 //	fp3 = fopen("Comp.txt","a+");
 	while(fscanf(fp,"%d",&num) != EOF )
 	{
@@ -241,7 +241,8 @@ int main()
 	t2 = (((double)tp1.tv_sec) * 1000000) + (((double)tp1.tv_nsec) / 1000) ;
 	time_spent = t2 -t1;
 	printf("%f\n",time_spent);
-	
+//	fseek(fp2,0,SEEK_END);
+//	fprintf(fp2,"%f\n",time_spent);
 	
 	p_size = chart;
 	
@@ -281,7 +282,8 @@ int main()
 	free(p);
 	free(lock_array);
 	fclose(fp);
-	fclose(fp1);
+//	fclose(fp1);
+// 	fclose(fp2);
 	return(0);
 }
 
