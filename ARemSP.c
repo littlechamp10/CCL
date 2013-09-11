@@ -19,7 +19,7 @@ int main()
 	printf("Input file name: ");
 	scanf("%s",f_name);
 	fp = fopen(f_name,"r");
-	fp1 = fopen("Test_Output.txt","w");
+//	fp1 = fopen("Test_Output.txt","w");
 //	fp2 = fopen("Test_Results.txt","a+");
 //	fp3 = fopen("Comp.txt","a+");
 	while(fscanf(fp,"%d",&num) != EOF )
@@ -35,9 +35,9 @@ int main()
 	column = chart/row ;
 	row = row + 2;
 	column = column +2;
-	image = (int **)malloc(row * sizeof(int *));
-	label = (int **)malloc(row * sizeof(int *));
-	p = (int *)malloc(chart * sizeof(int));
+	image = (int **)calloc(row, sizeof(int *));
+	label = (int **)calloc(row, sizeof(int *));
+	p = (int *)calloc(chart, sizeof(int));
 	if(image == NULL)
 	{
 		fprintf(stderr, "out of memory\n");
@@ -55,8 +55,8 @@ int main()
 	}
 	for(i = 0; i < row; i++)
 	{
-		image[i] =(int *) malloc(column * sizeof(int));
-		label[i] =(int *) malloc(column * sizeof(int));
+		image[i] =(int *) calloc(column, sizeof(int));
+		label[i] =(int *) calloc(column, sizeof(int));
 		if(image[i] == NULL)
 		{
 			fprintf(stderr, "out of memory\n");
@@ -68,7 +68,6 @@ int main()
 			return(0);
 		}
 	}
-	p[0] = 0;
 	fseek(fp,0,SEEK_SET);
 	for(i=1;i<row-1;i++)
 	{
@@ -187,15 +186,15 @@ int main()
 	
 	
 	
-	for(i = 1; i< row-1; i++)
+/*	for(i = 1; i< row-1; i++)
 	{
 		for(j=1;j<column-1;j++)
 			fprintf(fp1,"%d ",label[i][j]);
 		fprintf(fp1,"\n");
-	}
+	}*/
 
 	fclose(fp);
-	fclose(fp1);
+//	fclose(fp1);
 //	fclose(fp2);
 	return(0);			
 }
