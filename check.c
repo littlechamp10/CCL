@@ -23,11 +23,9 @@ int main(int argc, char *argv[])
 	char ch,f_name[50];
 	double time_spent,t1,t2;
 	struct timespec tp,tp1;
-//	printf("Input file name: ");
-//	scanf("%s",f_name);
 	fp = fopen(argv[1],"r");
 	nthreads = atoi(argv[2]);
-	printf("%d %s",nthreads+1,argv[2]);
+	printf("$%d\n",nthreads);
 	while(fscanf(fp,"%d",&num) != EOF )
 	{
 		chart++;
@@ -79,12 +77,12 @@ int main(int argc, char *argv[])
 		
 	clock_gettime(CLOCK_REALTIME,&tp);
 	t1 = (((double)tp.tv_sec) * 1000000) + (((double)tp.tv_nsec) / 1000) ;
+	
+//	omp_set_num_threads(nthreads);
        		
-       	omp_set_num_threads(nthreads);
 	#pragma omp parallel default(shared) private(count,tid,i,j,start,chunk,size,nthreads)
 	{
 		tid = omp_get_thread_num();
-		nthreads = omp_get_num_threads();
 		chunk = num_iter/nthreads ;
 		size = 2 * chunk;
 		start = 1 + tid*(chunk*2);
@@ -242,11 +240,11 @@ int main(int argc, char *argv[])
 	
 	p_size = chart;
 	
-	omp_set_num_threads(nthreads);
+//	omp_set_num_threads(nthreads);
 	
 	flatten(p,p_size);
 	
-	omp_set_num_threads(nthreads);
+//	omp_set_num_threads(nthreads);
 	
 	#pragma omp parallel default(shared) private(tid,i,j)
 	{
@@ -257,6 +255,13 @@ int main(int argc, char *argv[])
 				label[i][j] = p[label[i][j]];
 		}
 	}
+	
+/*	clock_gettime(CLOCK_REALTIME,&tp1);
+	t2 = (((double)tp1.tv_sec) * 1000000) + (((double)tp1.tv_nsec) / 1000) ;
+	time_spent = t2 -t1;
+//	fseek(fp2,0,SEEK_END);
+//	fprintf(fp2,"%f\n",time_spent);
+	printf("%f\n",time_spent);*/
 	
 	for(i=0;i<row;i++)
 	{
