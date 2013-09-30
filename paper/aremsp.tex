@@ -1,0 +1,99 @@
+\begin{algorithm*}
+
+\begin{algorithmic}
+\Function{ARemSP}{$image$}
+	\For{$i=1$ to $row-1$}
+		\For{$j=1$ to $column-1$}
+			\If{$image[i][j] = 1$}
+				\If{$image[i][j-1] = 0$}
+					\If{$image[i-1][j] = 1$}
+						\State $label[i][j] \gets label[i-1][j]$
+						\If{$image[i+1][j-1] = 1$}
+							\State $merge(p,label[i][j],label[i+1][j-1])$
+						\EndIf
+					\Else
+						\If{$image[i+1][j-1] = 1$}
+							\State $label[i][j] \gets label[i+1][j-1]$
+							\If{$image[i-1][j-1] = 1$}
+								\State $merge(p,label[i-1][j-1])$
+							\EndIf
+							\If{$image[i-1][j+1] = 1$}
+								\State $merge(rep,next,tail,label[i][j],label[i-1][j+1])$
+							\EndIf
+						\Else
+							\If{$image[i-1][j-1] = 1$}
+								\State $label[i][j] \gets label[i-1][j-1]$
+								\If{$image[i-1][j+1] = 1$}
+									\State $merge(p,label[i][j],label[i-1][j+1])$
+								\EndIf
+							\Else
+								\If{$image[i-1][j+1] = 1$}
+									\State $label[i][j] \gets label[i-1][j+1]$
+								\Else
+									\State $label[i][j] = count$
+									\State $rep[count] = count$
+									\State $next[count] = -1$
+									\State $tail[count] = count$
+									\State $count++$	
+								\EndIf
+							\EndIf
+						\EndIf
+					\EndIf
+				\Else
+					\State $label[i][j] = label[i][j-1]$
+					\If{$image[i-1][j] = 0$}
+						\If{$image[i-1][j+1] = 1$}
+							\State $merge(p,label[i][j],label[i-1][j+1])$
+						\EndIf
+					\EndIf
+				\EndIf
+				\If{$image[i+1][j] = 1$}
+					\State $label[i+1][j] \gets label[i][j]$
+				\EndIf
+			\Else
+				\If{$image[i+1][j] = 1$}
+					\If{$image[i][j-1] = 1$}
+						\State $label[i+1][j] \gets label[i][j-1]$
+					\Else
+						\If{$image[i+1][j-1] = 1$}
+							\State $label[i+1][j] \gets label[i+1][j-1]$
+						\Else
+							\State $label[i][j] = count$
+							\State $rep[count] = count$
+							\State $next[count] = -1$
+							\State $tail[count] = count$
+							\State $count++$
+						\EndIf
+					\EndIf
+				\EndIf
+			\EndIf
+		\EndFor
+	\EndFor
+\EndFunction
+\end{algorithmic}	
+\end{algorithm*}
+
+
+ \begin{algorithm*}
+ \begin{algorithmic}
+ \Function{merge}{$p$,$x$,$y$} 
+	\State $rootx \gets x, rooty \gets y$
+	\While { $p[rootx] \neq p[rooty]$ }
+		\If {$p[rootx] > p[rooty]$}
+			\If { $rootx = p[rootx]$ }
+				\State $p[rootx] \gets p[rooty]$
+				\State \Return{$p[rootx]$}
+			\EndIf
+			\State $z \gets p[rootx], p[rootx] \gets p[rooty], rootx \gets z$
+		\Else
+			\If { $rooty = p[rooty]$ }
+				\State $p[rooty] \gets p[rootx]$
+				\State \Return{$p[rootx]$}
+			\EndIf
+			\State $z \gets p[rooty], p[rooty] \gets p[rootx], rooty \gets z$
+		\EndIf
+	\EndWhile
+	\State \Return{$p[rootx]$}
+\EndFunction
+ \end{algorithmic}
+ \end{algorithm*}
