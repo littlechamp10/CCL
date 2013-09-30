@@ -1,0 +1,66 @@
+\begin{algorithm*}
+
+\begin{algorithmic}
+\Function{Run}{$image$}
+	\For{$i=1$ to $row-1$}
+		\For{$j=1$ to $column-1$}
+			\If{$image[i][j] = 1$}
+				\If{$image[i-1][j] = 1$}
+					\State $label[i][j] \gets label[i-1][j]$
+				\Else
+					\If{$image[i-1][j+1] = 1$}
+						\If{$image[i-1][j-1] = 1$}
+							\State $label[i][j] \gets label[i-1][j+1],$
+							\State $resolve(rep,next,tail,label[i-1][j+1],label[i-1][j-1])$
+						\Else
+							\If{$image[i][j-1] = 1$}
+								\State $label[i][j] \gets label[i-1][j+1]$
+								\State $resolve(rep,next,tail,label[i-1][j+1],label[i][j-1])$
+							\Else
+								\State $label[i][j] \gets label[i-1][j+1]$
+							\EndIf
+						\EndIf
+					\Else
+						\If{$image[i-1][j-1] = 1$}
+							\State $label[i][j] \gets label[i-1][j-1]$
+						\Else
+							\If{$image[i][j-1] = 1$}
+								\State $label[i][j] \gets label[i][j-1]$
+							\Else
+								\State $label[i][j] = count,$
+								\State $rep[count] = count,$
+								\State $next[count] = -1,$
+								\State $tail[count] = count,$
+								\State $count++$
+							\EndIf
+						\EndIf
+					\EndIf
+				\EndIf
+			\EndIf
+		\EndFor
+	\EndFor
+	\EndFunction
+\end{algorithmic}	
+\end{algorithm*}
+
+
+ \begin{algorithm*}
+ \begin{algorithmic}
+ \Function{resolve}{$rep,next,tail,i,j$}
+ 	\State $u \gets rep[i], v \gets rep[j]$
+ 	\If{$u < v$}
+ 		\State $k \gets v$
+ 		\While{$k \neq -1$}
+ 			\State $rep[k] \gets u, k \gets next[k]$
+ 		\EndWhile
+ 		\State $next[tail[u]] \gets v, tail[u] \gets tail[v]$
+ 	\ElsIf{$u > v$}
+ 		\State $k \gets u$
+ 		\While{$k \neq -1$}
+ 			\State $rep[k] \gets v, k \gets next[k]$
+ 		\EndWhile
+ 		\State $next[tail[v]] \gets u, tail[v] \gets tail[u]$
+ 	\EndIf
+ \EndFunction
+ \end{algorithmic}
+ \end{algorithm*}
