@@ -1,43 +1,38 @@
-\subsection{Related Work}
+\section{Related Work}
 \label{sec:relatedworks}
 
-There exist many algorithms for computing Connected components in a given image. These algorithms are categorized into
-mainly four groups as mentioned by \cite{Suzuki2003_Linear}: 1) methods by repeated passes over the data,
-(2) methods of two passes over the data, (3) methods using hierarchical tree equivalent representations of the data,
-(4) parallel algorithms.All these algorithms shares one common step, known as scanning step in which provisional label 
-is given to each of the pixel depending on its neighbors. In this paper, we concentrate on strategies to improve the first
-two groups of methods and then will implement parallel algorithm for the most optimized algorithm.
-
-There are two parts in scanning step: 1) examining neighbors of current pixel which already got label to determine label 
-for the current pixel. 2) storing label equivalence information to speed up the algorithm. In \cite{Wu2009_LRPC} ,they have 
-given two strategies to speedup the algorithm. First strategy reduces the average number of neighbors accessed by factor of 
-$2$ through the use of decision tree. Second strategy replaces the conventional pointer based union-find algorithm used for
-storing label equivalence by array based union-find algorithm. They proves that array based approach will take less memory 
-than the pointer based approach so that will speedup the algorithm. They implemented union-find algorithm using Link by 
-Rank and Path Compression. We will call this algorithm as LRPC for our reference.
+In any $2$-pass algorithm,there are two parts in scanning step: 1) examining neighbors of current pixel which already
+got label to determine label for the current pixel. 2) storing label equivalence information to speed up the algorithm. 
+In \cite{Wu2009_LRPC},they have given two strategies to speedup the algorithm. First strategy reduces the average number
+of neighbors accessed by factor of $2$ through the use of decision tree. Second strategy replaces the conventional pointer
+based union-find algorithm used for storing label equivalence by array based union-find algorithm. They proves that array 
+based approach will take less memory than the pointer based approach so that will speedup the algorithm. They implemented
+union-find algorithm using Link by Rank and Path Compression. We will call this algorithm as LRPC for our reference.
 
 In \cite{He2008_Run}, they replaced the union-find data structure by a different data structure to process label 
-equivalence information.In their algorithm, at any point, all provisional labels that are assigned to a connected component
-found so far during the first scan are combined in a set $S(r)$, where $r$ is the smallest label and is referred to as the
-representative label.They used $rtable[]$ for storing representative label of a set, $next[]$ to find the next element in 
-the set and $tail[]$ to find the last element of the set.We have implemented an algorithm with decision tree along with 
-the above data structure. We will call it as Run for our reference.
+equivalence information.In their algorithm, at any point, all provisional labels that are assigned to a connected 
+component found so far during the first scan are combined in a set $S(r)$, where $r$ is the smallest label and is 
+referred to as the representative label.They used $rtable[]$ for storing representative label of a set, $next[]$ to 
+find the next element in the set and $tail[]$ to find the last element of the set.We have implemented an algorithm 
+with decision tree along with the above data structure. We will call it as Run for our reference.
 
-In \cite{He2012_ARun}, they replaced the first part of scanning step by a new algorithm which process image lines two by 
-two and process image pixels two by two. They used the same data structure given in \cite{He2008_Run} for processing label 
-equivalence information.They also proved that as the number of lines to be scanned will be halved so it will speedup the 
-algorithm. We will call this algorithm as Arun for our reference.
+In \cite{He2012_ARun}, they replaced the first part of scanning step by a new algorithm which process image lines two
+by two and process image pixels two by two. They used the same data structure given in \cite{He2008_Run} for 
+processing label equivalence information.They also proved that as the number of lines to be scanned will be halved so 
+it will speedup the algorithm. We will call this algorithm as Arun for our reference.
 
-In \cite{Patwary2010_RemSP}, they compared all the different variations of union-find algorithms over different graph data 
-sets and found that RemSP, the implementation given by Rem is the best alomg all the variations of union-find algorithm.
+In \cite{Patwary2010_RemSP}, they compared all the different variations of union-find algorithms over different graph 
+data sets and found that RemSP, the implementation given by Rem is the best alomg all the variations of union-find 
+algorithm.
 
-In this paper, we have given two different variations for CCL algorithm. In the first variation, we have used the decision
-tree suggested by the LRPC algorithm for the first part of scanning step but for the second part we have used RemSP 
-instead of Link by Rank and Path Compression. We will call this RemSP for our reference.
-In the second one, we processed the image lines two by two as suggested by \cite{He2012_ARun} but for the second part, we
-used RemSP instead of data structure used by \cite{He2012_ARun}. We will call this ARemSP for our reference.Then we have
-compared both of our veriations with LRPC, Run & Arun algorithms and found out that ARemSP performs best among all the 
-algorithms.
+In this paper, we have given two different variations for CCL algorithm. In the first variation, we have used the 
+decision tree suggested by the LRPC algorithm for the first part of scanning step but for the second part we have used
+RemSP instead of Link by Rank and Path Compression. We will call this RemSP for our reference.
 
-Finally we have also given a parallel implementation of ARemSP using OpenMP.We used the parallel implementation of RemSP
-given in \cite{Patwary2012_PARemSP} Then we have compared it with ARemSP.
+In the second one, we processed the image lines two by two as suggested by \cite{He2012_ARun} but for the second part,
+we used RemSP instead of data structure used by \cite{He2012_ARun}. We will call this ARemSP for our reference.Then we
+have compared both of our veriations with LRPC, Run and Arun algorithms and
+found out that ARemSP performs best among all the algorithms.
+
+Finally we have also given a parallel implementation of ARemSP using OpenMP.We used the parallel implementation of 
+RemSP given in \cite{Patwary2012_PARemSP} Then we have compared it with ARemSP.
