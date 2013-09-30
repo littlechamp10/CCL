@@ -1,0 +1,86 @@
+\documentclass{sig-alternate}
+\usepackage{multirow}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{algpseudocode}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage{amsmath}
+\newcommand{\subparagraph}{}
+\usepackage[small,compact]{titlesec}
+\usepackage{paralist}
+\usepackage{multicol}
+\usepackage{cite}
+\usepackage[labelfont=bf, font={scriptsize,bf}]{caption}
+\usepackage[utf8]{inputenc}
+\usepackage{caption}
+\usepackage{microtype}
+\usepackage{subfig}
+\usepackage[none]{hyphenat}
+\usepackage{url}
+\DeclareCaptionType{copyrightbox}
+\synctex=1
+% \usepackage[none]{hyphenat}
+
+% \theoremstyle{definition}
+% \newtheorem{defn}{Definition}[section]
+% \newtheorem*{defn*}{}
+\interfootnotelinepenalty=10000
+\CopyrightYear{2012}
+
+\begin{document}
+\sloppy
+\conferenceinfo{}{}
+
+\newcommand{\systemName}[0]{\emph{WikiTables}}
+\newcommand{\systemNameHeader}[0]{WikiTables}
+\newcommand{\columnRankingTaskName}[0]{\emph{relevant join}}
+\newcommand{\tableSearchTaskName}[0]{\emph{table search}}
+\newcommand{\columnRankingTaskNameHeader}[0]{Relevant Join}
+\newcommand{\tableSearchTaskNameHeader}[0]{Table Search}
+\newcommand*{\myfont}{\fontfamily{pzc}\selectfont}
+
+\newcommand{\tableCorpus}[0]{\cal{T}}
+% \newcommand{\matchCorpus}[0]{\begin{myfont}M\end{myfont}}
+\newcommand{\queryTable}[0]{\mathbf{T}_{q}}
+\newcommand{\targetTable}[0]{\mathbf{T}_{t}}
+\newcommand{\finalTable}[0]{\mathbf{T}_{f}}
+\newcommand{\matchCorpus}[0]{\cal{M}}
+\newcommand{\matchPerc}[0]{\emph{MatchPercent}}
+
+
+\newcommand{\sourceCol}[0]{\mathbf{c}^{q}_{s}}
+\newcommand{\matchedCol}[0]{\mathbf{c}^{t}_{m}}
+\newcommand{\addableCol}[0]{\mathbf{c}^{t}_{c}}
+\newcommand{\addedCol}[0]{\mathbf{c}^{t}_{a}}
+\newcommand{\sarmaSys}[0]{\textsc{Rel\_Table}}
+\newcommand{\ventisSys}[0]{\textsc{Table}}
+\newcommand{\rjBaseline}[0]{\textsc{Base}}
+\newcommand{\rjAblateSR}[0]{\emph{WikiTables$-$SR}}
+\newcommand{\rjBest}[0]{\emph{WikiTables}}
+\newcommand{\googft}[0]{\textsc{Google Fusion Tables}}
+\newcommand{\venetisEtAl}[0]{Venetis et al.}
+\newcommand{\sarmaEtAl}[0]{Sarma et al.}
+\def\Section {\S}
+
+\title{Learning to Search and Join Tables on Wikipedia} 
+
+\numberofauthors{1} 
+\author{\alignauthor Chandra Sekhar Bhagavatula, Thanapon Noraset, Doug Downey \\
+\affaddr{Department of Electrical Engineering \& Computer Science, Northwestern University} \\
+\email{\{csbhagav, nor.thanapon\}@u.northwestern.edu, ddowney@eecs.northwestern.edu}
+} 
+
+\maketitle
+
+\input{introduction.tex}
+\input{related_work.tex}
+\input{lrpc.tex}
+\input{remsp.tex}
+\input{run.tex}
+\input{aremsp.tex}
+\input{arun.tex}
+\end{document}
+
+%\input{DepictColumnAppend.tex}
+%\input{Appendix.tex}
