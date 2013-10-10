@@ -1,0 +1,15 @@
+\begin{abstract}
+Connected Component Labeling(CCL) is one of the most important step in pattern recognition and image processing. Connected 
+component labeling assigns labels to a pixel such that adjacent pixels sharing the same features are assigned the same label.
+Past literature on CCL have proposed strategies of repeated passes and two pass over the data.Two pass algorithms traverse the 
+image twice. In the first traversal, provisional label is given to each pixel and label equivalence imformation is stored. In the 
+second traversal, actual label is given to each pixel. The $LRPC$ algorithm by Wu, Otoo and Suzuki provides two optimization strategies:
+$1)$ use of decision tree $2)$ use of array-based union-find technique. The $ARun$ algorithm by He,Chao and Suzuki scans the image line two by 
+two and uses another technique instead of the conventional union-find for storing label equivalence information.
+
+We present an optimization strategy to improve two-pass connected-component labeling algorithms. In this paper, we propose two algorithms
+using the algorithms $LRPC$ and $ARun$ and our optimization strategy. The optimization strategy uses the best optimized union-find technique 
+called $RemSP$ for storing label equivalence information of pixels in a $2$-D image. We also provide the parallel version of the modified 
+algorithm using OpenMP. Our experiment show that our proposed algorithm achieved a speedup of 19.5 on $24$ cores on a binary image of 
+$11411\times10192$ pixels. Also, the parallel algorithm does not make use of any hardware specific routines, and thus is highly portable. 
+\end{abstract}
