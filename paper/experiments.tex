@@ -6,6 +6,11 @@ were implemented in C using OpenMP and compiled with gcc.
 
 Our test dataset consists of 4 types of image dataset: Texture, Arial, Miscellaneous and NLCD. First three datasets are taken from the image database
 of the University of Southern California. The fourth dataset is taken from US National Cover Database 2006. All of the images are converted to binary
-images by means of MATLAB.
+images by means of MATLAB. Texture,Arial and Miscellaneous dataset contain images of size $1024 \times 1024$ or less. NCLD dataset contains images of
+size bigger than $3000 \times 4000$. The biggest image in the dataset is $22822 \times 20384$. 
 
+Firstly, we did the experiment over all the sequential algorithms. The result is given in Table \ref{table:seq}. We can see that {\em ARemSP} is best among all
+the sequential algorithms. Then we tested the parallel algorithm {\em PARemSP} over all the images. Fig \ref{line,linet} shows the speedup of the algorithm for 
+NCLD image dataset. We get a maximum speedup of $20.1$ for image of size $22822 \times 20384$. Fig \ref{line} shows the speedup for {\em Phase-$I$ of PARemSP} i.e.
+the local computation and fig \ref{linet} shows the overall speedup. We can see that there is not significant difference between both the speedups which shows that {\em merge} operation doesn't take much time. We have also shown the speedup for all the other datasets in fig \ref{bar}. We get a maximum seedup of $10$ in this case as the images are small in size.  
 
