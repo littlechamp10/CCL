@@ -1,7 +1,7 @@
 \section{Introduction}
 
 One of the most fundamental operations in pattern recognition is the labeling of connected components in a binary image.
-Connected-component labeling is a procedure for assigning a unique label toeach object (or a connected component) in 
+Connected-component labeling(CCL) is a procedure for assigning a unique label to each object (or a connected component) in 
 an image. Because these labels are key for other analytical procedures, connected-component labeling is an 
 indispensable part of most applications in pattern recognition and computer vision, such as fingerprint identification,
 character recognition, automated inspection, target recognition, face identification, medical image analysis, and 
@@ -18,9 +18,9 @@ In $2D$ images, there are two ways of defining connectedness: $4$-connectednss a
 only used the $8$-connectedness of the pixel.
 
 There exist many algorithms for computing Connected components in a given image. These algorithms are categorized into
-mainly four groups as mentioned by \cite{Suzuki2003_Linear}: (1) methods by repeated passes over the data, (2) methods 
-of two passes over the data,(also called $2$-pass algorithm) (3) methods using hierarchical tree equivalent representations 
-of the data, (4) parallel algorithms.
+mainly four groups as mentioned by \cite{Suzuki2003_Linear}: $1)$ methods by repeated passes over the data, $2)$ methods 
+of two passes over the data,(also called $2$-pass algorithm) $3)$ methods using hierarchical tree equivalent representations 
+of the data, $4)$ parallel algorithms.
 
 The group $1$ algorithms repeat passes through an image in forward and backward raster directions alternately to propagate 
 the label equivalences until no labels change.

@@ -1,8 +1,8 @@
 \section{Related Work}
 \label{sec:relatedworks}
 
-In any $2$-pass algorithm,there are two parts in scanning step: 1) examining neighbors of current pixel which already
-got label to determine label for the current pixel. 2) storing label equivalence information to speed up the algorithm. 
+In any $2$-pass algorithm,there are two parts in scanning step: $1)$ examining neighbors of current pixel which already
+got label to determine label for the current pixel. $2)$ storing label equivalence information to speed up the algorithm. 
 In \cite{Wu2009_LRPC},they have given two strategies to speedup the algorithm. First strategy reduces the average number
 of neighbors accessed by factor of $2$ through the use of decision tree. Second strategy replaces the conventional pointer
 based union-find algorithm used for storing label equivalence by array based union-find algorithm. They proves that array 

@@ -1,4 +1,4 @@
-\documentclass{sig-alternate}
+\documentclass{IEEEtran}
 \usepackage{multirow}
 \usepackage{fixltx2e}
 \usepackage{graphicx}
@@ -18,6 +18,8 @@
 \usepackage{subfig}
 \usepackage[none]{hyphenat}
 \usepackage{url}
+\usepackage{fancybox}
+\usepackage{tikz}
 \DeclareCaptionType{copyrightbox}
 \synctex=1
 % \usepackage[none]{hyphenat}
@@ -25,12 +27,10 @@
 % \theoremstyle{definition}
 % \newtheorem{defn}{Definition}[section]
 % \newtheorem*{defn*}{}
-\interfootnotelinepenalty=10000
-\CopyrightYear{2012}
 
 \begin{document}
 \sloppy
-\conferenceinfo{}{}
+
 
 \newcommand{\systemName}[0]{\emph{WikiTables}}
 \newcommand{\systemNameHeader}[0]{WikiTables}
@@ -63,24 +63,27 @@
 \newcommand{\sarmaEtAl}[0]{Sarma et al.}
 \def\Section {\S}
 
-\title{Learning to Search and Join Tables on Wikipedia} 
+\title{A New Parallel Algorithm for Two-Pass Connected Component Labeling} 
 
-\numberofauthors{1} 
-\author{\alignauthor Chandra Sekhar Bhagavatula, Thanapon Noraset, Doug Downey \\
-\affaddr{Department of Electrical Engineering \& Computer Science, Northwestern University} \\
-\email{\{csbhagav, nor.thanapon\}@u.northwestern.edu, ddowney@eecs.northwestern.edu}
-} 
 
 \maketitle
 
-\input{introduction.tex}
-\input{related_work.tex}
-\input{remsp.tex}
-\input{aremsp.tex}
-\input{remsp-I.tex}
-\input{aremsp-I.tex}
-\input{merge}
-\input{flatten}
+\input{abstract}
+ \input{introduction}
+ \input{related_work}
+ \input{proposed_algo}
+ \input{parallel_algo}
+ \input{experiments}
+ \input{figures}
+ \input{paremsp}
+ \input{remsp}
+ \input{aremsp}
+ \input{remsp-I}
+ \input{aremsp-I}
+ \input{merge}
+ \input{flatten}
+ \input{merger}
+ \input{bibliography.tex}
 \end{document}
 
 %\input{DepictColumnAppend.tex}

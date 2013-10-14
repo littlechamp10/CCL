@@ -1,0 +1,16 @@
+\section{Parallelizing \em{AREMSP} Algorithm}
+
+In the following we describe how one can run {\em ARemSP} algorithm in parallel
+on a shared memory system. In doing so we make the assumption that memory read/write operations are atomic and any operations issued concurrently by different processors will be executed in some unknown 
+sequential order unless specific constructs are used to ensure an ordering. However,two dependent operations issued by the same processor
+will always be applied in the same order as they are issued. This is in accordance with the memory model when using the atomic directive in OpenMP.
+
+In {\em PARemSP}, we divide the image among threads row-wise. The image is
+divided into chunks of equal size and given to the threads. In the first step,
+each thread run Phase-I of {\em ARemSP} on it's chunk simultaneously. We
+initialize the label to the start index of the thread for every thread so that no two pixels in the image have the same label after the first step. After the first step, each pixel is given a provisional label. Now the pixels at the boundary of each chunk need to be merged to get the final labels. In the second step, we merge the boundary pixels using parallel implementation of Rem's 
+Algorithm \cite{Patwary2012_PARemSP}. We implement the parallel algorithm using
+OpenMP directives {\em pragma omp parallel} and {\em pragma omp for}. The
+pseudo code for parallel implementation of Rem's Algorithm is given as Algorithm
+\ref{alg:merger}. The pseudo code of {\em PARemSP} is given as Algorithm
+\ref{alg:PARemSP}.

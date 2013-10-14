@@ -1,0 +1,30 @@
+\begin{algorithm}[ht]
+\small
+{
+	\caption{Pseudo-code for merge}
+	\label{alg:merge}
+	\textbf{Input:} $1D$ array $p$ and two nodes $x$ and $y$ \\
+	\textbf{Output:} The root of united tree 
+	\begin{algorithmic}[1]
+	\Function{merge}{$p$,$x$,$y$} 
+		\State $rootx \gets x, rooty \gets y$
+		\While { $p[rootx] \neq p[rooty]$ }
+			\If {$p[rootx] > p[rooty]$}
+				\If { $rootx = p[rootx]$ }
+					\State $p[rootx] \gets p[rooty]$
+					\State \Return{$p[rootx]$}
+				\EndIf
+				\State $z \gets p[rootx], p[rootx] \gets p[rooty], rootx \gets z$
+			\Else
+				\If { $rooty = p[rooty]$ }
+					\State $p[rooty] \gets p[rootx]$
+					\State \Return{$p[rootx]$}
+				\EndIf
+				\State $z \gets p[rooty], p[rooty] \gets p[rootx], rooty \gets z$
+			\EndIf
+		\EndWhile
+		\State \Return{$p[rootx]$}
+	\EndFunction
+	\end{algorithmic}	
+}
+\end{algorithm}

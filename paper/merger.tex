@@ -1,0 +1,46 @@
+\begin{algorithm}[ht]
+\small
+{
+	\caption{Pseudo-code for merger}
+	\label{alg:merger}
+	\textbf{Input:} $1D$ array $p$ and two nodes $x$ and $y$ \\
+	\textbf{Output:} The root of united tree 
+	\begin{algorithmic}[1]
+	\Function{merger}{$p$,$x$,$y$} 
+		\State $rootx \gets x, rooty \gets y$
+		\While { $p[rootx] \neq p[rooty]$ }
+			\If {$p[rootx] > p[rooty]$}
+				\If{$rootx = p[rootx]$}
+					\State $omp\_set\_lock(\&(lock\_array[rootx]))$
+					\State $success \gets 0$
+					\If{$rootx = p[rootx]$}
+						\State $p[rootx] \gets p[rooty]$
+						\State $success \gets 1$
+					\EndIf
+					\State $omp\_unset\_lock(\&(lock\_array[rootx]))$
+					\If{$success =1$}  
+						\State break
+					\EndIf
+				\EndIf
+				\State $z \gets p[rootx], p[rootx] \gets p[rooty], rootx \gets z$
+			\Else
+				\If{$rooty = p[rooty]$}
+					\State $omp\_set\_lock(\&(lock\_array[rooty]))$
+					\State $success \gets 0$
+					\If{$root = p[rooty]$}
+						\State $p[rooty] \gets p[rootx]$
+						\State $success \gets 1$
+					\EndIf
+					\State $omp\_unset\_lock(\&(lock\_array[rooty]))$
+					\If{$success =1$}  
+						\State break
+					\EndIf
+				\EndIf
+				\State $z \gets p[rooty], p[rooty] \gets p[rootx], rooty \gets z$
+			\EndIf
+		\EndWhile
+		\State \Return{$p[rootx]$}
+	\EndFunction
+	\end{algorithmic}	
+}
+\end{algorithm}

@@ -1,67 +1,21 @@
-\begin{algorithm*}
-
-\begin{algorithmic}
-\Function{RemSP}{$image$}
-	\For{$i=1$ to $row-1$}
-		\For{$j=1$ to $column-1$}
-			\If{$image[i][j] = 1$}
-				\If{$image[i-1][j] = 1$}
-					\State $label[i][j] \gets label[i-1][j]$
-				\Else
-					\If{$image[i-1][j+1] = 1$}
-						\If{$image[i-1][j-1] = 1$}
-							\State $label[i][j] \gets merge(p,label[i-1][j+1],label[i-1][j-1])$
-						\Else
-							\If{$image[i][j-1] = 1$}
-								\State $label[i][j] \gets merge(p,label[i-1][j+1],label[i][j-1])$
-							\Else
-								\State $label[i][j] \gets label[i-1][j+1]$
-							\EndIf
-						\EndIf
-					\Else
-						\If{$image[i-1][j-1] = 1$}
-							\State $label[i][j] \gets label[i-1][j-1]$
-						\Else
-							\If{$image[i][j-1] = 1$}
-								\State $label[i][j] \gets label[i][j-1]$
-							\Else
-								\State $label[i][j] \gets count,$
-								\State $p[count] \gets count,$
-								\State $count++$
-							\EndIf
-						\EndIf
-					\EndIf
-				\EndIf
-			\EndIf
+\begin{algorithm}[ht]
+\small
+{
+	\caption{Pseudo-code for RemSP}
+	\label{alg:RemSP}
+	\textbf{Input:} $2D$ array $image$ containing the pixel values \\
+	\textbf{Output:} $2D$ array $label$ containing the final labels
+	\begin{algorithmic}[1]
+	\Function{RemSP}{$image$}
+		\State $RemSP-I(image)$ \Comment{Phase-I of RemSP}
+		\State $flatten(p,count)$ 
+		\For{$row$ in $image$}  \Comment{Phase-II of RemSP}
+			\For{$col$ in $row$}
+				\State $label(e) \gets p[label(e)]$
+			\EndFor
 		\EndFor
-	\EndFor
 	\EndFunction
-\end{algorithmic}	
+	\end{algorithmic}
+}	
+\end{algorithm}
 
-\end{algorithm*}
-
-\begin{algorithm*}
-
-\begin{algorithmic}
-\Function{merge}{$p$,$x$,$y$} 
-	\State $rootx \gets x, rooty \gets y$
-	\While { $p[rootx] \neq p[rooty]$ }
-		\If {$p[rootx] > p[rooty]$}
-			\If { $rootx = p[rootx]$ }
-				\State $p[rootx] \gets p[rooty]$
-				\State \Return{$p[rootx]$}
-			\EndIf
-			\State $z \gets p[rootx], p[rootx] \gets p[rooty], rootx \gets z$
-		\Else
-			\If { $rooty = p[rooty]$ }
-				\State $p[rooty] \gets p[rootx]$
-				\State \Return{$p[rootx]$}
-			\EndIf
-			\State $z \gets p[rooty], p[rooty] \gets p[rootx], rooty \gets z$
-		\EndIf
-	\EndWhile
-	\State \Return{$p[rootx]$}
-\EndFunction
-\end{algorithmic}
-	
-\end{algorithm*}
