@@ -2,7 +2,8 @@
 \begin{tikzpicture}
 \begin{axis}[legend pos = north west,
 xlabel=\# Threads,
-ylabel=Speedup]
+ylabel=Speedup,
+symbolic x coords={2,6,12,18,24}]
 \addplot+[sharp plot] coordinates {
 (2,1.58)
 (6,5.22)
@@ -45,7 +46,14 @@ ylabel=Speedup]
 (18,15.45)
 (24,20.10)
 };
-\legend{image\_1,image\_2,image\_3,image\_4,image\_5,image\_6}
+\addplot+[sharp plot] coordinates{
+(2,2)
+(6,6)
+(12,12)
+(18,18)
+(24,24)
+};
+\legend{image\_1,image\_2,image\_3,image\_4,image\_5,image\_6,ideal\_speedup}
 \end{axis}
 \end{tikzpicture}
 \caption{Speedup for different images and different numbers of threads for local operation}
