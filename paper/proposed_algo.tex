@@ -1,16 +1,20 @@
 \section{Proposed Algorithm}
-
+\label{sec:proposed_algorithm}
 For an $M \times N$ image, we denote $image(a)$ to denote the pixel value of pixel $a$. As we are working with
 binary images, we suppose the value of foregroud pixel is 1 and that of background pixel is 0. All pixels in 
 the edge of an image are considered to be background pixels. We have proposed two $2$-pass sequential algorithms
-$RemSP$ and $ARemSP$ in this paper. These two algorithms are different in their first scan.
+\remsp\ and \aremsp\ in this paper. These two algorithms are different in their
+first scan.
 
-\subsection{\em{RemSP} Algorithm}
-In the first scan of RemSP, we process image lines one by one using the forward scan mask as shown in figure \ref{fscan1}. We 
-have used the decision tree proposed by \cite{Wu2009_LRPC} for determining the provisional label of current pixel
-$e$ as we can reduce the number of neighbors using decision tree. Instead of examining all four neighbors of e, 
-i.e., a,b,c and d, they proposed to examine the neighbors according to a desicion tree as shown in figure \ref{dtree}. Let $label$
-denote the $2D$ array storing the labels and let $p$ denote equivalence array then according to $LRPC$ algorithm,
+\subsection{\remsp\ Algorithm}
+In the first scan of \remsp,\ we process image lines one by one using the
+forward scan mask as shown in figure \ref{fscan1}. We have used the decision 
+tree proposed by \cite{Wu2009_LRPC} for determining the provisional label of current pixel
+$e$ as we can reduce the number of neighbors using decision tree. Instead of
+examining all four neighbors of $e$, i.e., $a$, $b$, $c$ and $d$, they proposed
+to examine the neighbors according to a desicion tree as shown in figure \ref{dtree}.
+ Let $label$ denote the $2D$ array storing the labels and let $p$ denote equivalence array 
+ then according to \lrpc\ algorithm,
 three functions used by this decision tree are defined as follows:
 
 $1)$. The one-argument copy function, copy(a), contains one statement:
@@ -19,28 +23,36 @@ $2)$. The two-argument copy function, copy(c,a), contains one statements:
 				$label(e) = merge(p, label(c), label(a))$\\
 $3)$. The new label function sets $count$ as $label(e)$, appends $count$ to array $p$, and increments $count$ by $1$.
 
-However, the implementation of $merge$ operation in our proporsed algorithm $RemSP$ is different from that of in $LRPC$.
-We have used the implementation of union-find proposed by $Rem$ \cite{Patwary2010_RemSP} for merge operation. $Rem$ 
-integrates the Union operation with a compression technique known as Splicing $(sp)$. In the case when $rootx$ is to 
-be moved to $p(rootx)$ it works as follows: just before this operation, $rootx$ is stored in a temporary variable $z$ and 
-then, just before moving $rootx$ up to its parent $p(z)$, $p(rootx)$ is set to $p(rooty)$, making the subtree rooted at 
+However, the implementation of \merge\ operation in our proporsed algorithm
+\remsp\ is different from that of in \lrpc.\
+We have used the implementation of union-find proposed by {\em Rem}
+\cite{Patwary2010_RemSP} for merge operation. {\em Rem} integrates the Union
+operation with a compression technique known as Splicing $(sp)$. In the case when 
+$rootx$ is to be moved to $p(rootx)$ it works as follows: just before this operation, 
+$rootx$ is stored in a temporary variable $z$ and 
+then, just before moving $rootx$ up to its parent $p(z)$, $p(rootx)$ is set to $p(rooty)$, 
+making the subtree rooted at 
 $rootx$ a sibling of $rooty$. This neither compromises the increasing parent property (because $p(rootx) < p(rooty)$) 
 nor invalidates the set structures (because the two sets will have been merged when the operation ends.) The effect of $sp$
 is that each new parent has a higher value than the value of the old parent, thus compressing the tree. The algorithm for
-$merge$ is given as Algorithm \ref{alg:merge}. The full algorithm for $RemSP$ is
+\merge\ is given as Algorithm \ref{alg:merge}. The full algorithm for \remsp\ is
 given as Algorithm \ref{alg:RemSP}.
 
-\subsection{\em{ARemSP} Algorithm}
-In the first scan of $ARemSP$, we process image lines two by two and processes pixels two by two using the mask shown in figure \ref{fscan2} suggested 
-in \cite{He2012_ARun}. We will give the label to both $e$ and $g$ simultaneously. If both $e$ and $g$ are background pixels,
-then needs to be done. If $e$ is a foreground pixel and there is no foreground pixel in the mask, we assign a new provisional label
-to $e$ and if $g$ is a foreground pixel, we will give the label of $e$ to $g$. If there are foreground pixels in the mask, then we 
-assign $e$ any label assigned to foreground pixels. In this case, if there is only one connected component in the mask then there is 
-no need for label equivalance. Otherwise, if there are more than one connected component in the mask and as they are connected to $e$ so
-all the labels of the connected components are equivalent labels and needs to be merged.For all the cases,one can refer \cite{He2012_ARun}.
-In \cite{He2012_ARun}, they have used three arrays for merge operation. However, we have used the implementation of union-find proposed by 
-$Rem$ \cite{Patwary2010_RemSP} for merge operation in $ARemSP$. The full
-algorithm for $ARemSP$ is given as Algorithm \ref{alg:ARemSP}.
+\subsection{\aremsp\ Algorithm}
+In the first scan of \aremsp,\ we process image lines two by two and processes
+pixels two by two using the mask shown in figure \ref{fscan2} suggested in \cite{He2012_ARun}. 
+We will give the label to both $e$ and $g$ simultaneously. If both $e$ and $g$ are background pixels,
+then needs to be done. If $e$ is a foreground pixel and there is no foreground pixel in the mask, we assign a 
+new provisional label to $e$ and if $g$ is a foreground pixel, we will give the
+label of $e$ to $g$. If there are foreground pixels in the mask, then we assign $e$ any label assigned to 
+foreground pixels. In this case, if there is only one connected component in the mask then there is 
+no need for label equivalance. Otherwise, if there are more than one connected component in the mask and as 
+they are connected to $e$ so all the labels of the connected components are
+equivalent labels and needs to be merged.For all the cases,one can refer \cite{He2012_ARun}.
+In \cite{He2012_ARun}, they have used three arrays for merge operation. However, we have used the implementation of 
+union-find proposed by {\em Rem} \cite{Patwary2010_RemSP} for merge operation in
+\aremsp.\ The full algorithm for \aremsp\ is given as Algorithm
+\ref{alg:ARemSP}.
 
 
 
