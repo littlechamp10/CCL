@@ -27,7 +27,7 @@ The repeated pass algorithms perform repeated passes over an image in forward an
 to propagate the label equivalences until no labels change.
 In two-pass algorithms, during the first pass, provisional labels are assigned to connected components;
 the label equivalences are stored in a one-dimensional or a two-dimensional table array. After the first pass, the label 
-equivalences are resolved by. This step is often performed by using a search algorithm such as the union-find algorithm.
+equivalences are resolved by ???. This step is often performed by using a search algorithm such as the union-find algorithm.
 The results of resolving are generally stored in a one-dimensional table. During the second pass, the provisional labels are 
 replaced by the smallest equivalent label using the table. As the algorithm traverses image twice that's why these algorithms 
 are called two-pass algorithms.
@@ -37,27 +37,25 @@ Lastly, the parallel algorithms have been developed for parallel machine models 
 Hoverver all these algorithms shares one common step, known as scanning step in which provisional label is given to each of the
 pixel depending on its neighbors.
 
-In this paper we focus on two-pass CCL algorithms. Link by Rank and Path Compression(LRPC) \cite{}, and ARun\cite{}
+In this paper we focus on two-pass CCL algorithms. Link by Rank and Path Compression(\lrpc) \cite{}, and \arun \cite{}
 are two developed techniques for two-pass CCL algorithms.
 The {\em LRPC} algorithm uses a decision tree to assign provisional labels and an array-based union-find datastructure
 to store label equivalence information. The \arun algorithm employs a special scan order over the data and three linear
 arrays instead of the conventional union-find datastructure. 
-We propose a two-pass algorithm for labeling the connected components called \aremsp, which is based on union-find algorithm given by {\em Rem} \cite{}
+We propose a two-pass algorithm for labeling the connected components called \aremsp, which is based on \rems union-find algorithm \cite{}
 and the scan strategy of \arun algorithm. Since \rems union-find uses compression technique called {\em Splicing} \cite{},
 our proposed sequential two-pass algorithm \aremsp is xxx times faster than {\em LRPC} and xxx times faster than {\em Arun}.
-Another advantage of using {\Rem's} union-find approach is that its parallel implementation allows pixels of the images to be
+Another advantage of using \rems union-find approach is that its parallel implementation allows pixels of the image to be
 processed in any order and thus scales better with increasing number of processors. Therefore, we have also given the parallel implementation of proposed
 sequential algorithm two-pass CCL algorithm called \paremsp. For scalability, our algorithm in in the first pass, divides the image among threads
-and each thread runs the scan strategy of \arun algorithm along with $RemSP$ simultaneously. To merge the provisional labels on the image boundary,
-we use the parallel version of \remsp \cite{}. Our experiments show the scalability of $PARemSP$ achieving speedups up to $19.5$ using $24$ cores
+and each thread runs the scan strategy of \arun algorithm along with \remsp simultaneously. To merge the provisional labels on the image boundary,
+we use the parallel version of \remsp \cite{}. Our experiments show the scalability of \paremsp achieving speedups up to $19.5$ using $24$ cores
 on shared memory architecture for an image of size $11,411 \times 10,192$.
 Additionally, the parallel algorithm does not make use of any hardware specific routines, and thus is highly portable.
 
-The remainder of this paper is organized as follows. In
-Section \ref{}, we provided related work on connected component labeling. In
-Section \ref{}, we propose our sequential two-pass CCL algorithm \aremsp
-and it’s parallel version in Section \ref{}. We present our experimental
-methodology and results in Section \ref{}. We conclude our work
-and propose future work in Section \ref{}.
+The remainder of this paper is organized as follows. In section \ref{}, we provided related work on connected component labeling.
+In section \ref{}, we propose our sequential two-pass CCL algorithm \aremsp and it's parallel version in section \ref{}. We present our experimental
+methodology and results in section \ref{}. We conclude our work
+and propose future work in section \ref{}.
 
 
