@@ -45,8 +45,9 @@ arrays instead of the conventional union-find datastructure.
 We propose a two-pass algorithm for labeling the connected components called \aremsp, which is based on \rems\ union-find algorithm \cite{}
 and the scan strategy of \arun\ algorithm. Since \rems\ union-find uses compression technique called {\em Splicing} \cite{},
 our proposed sequential two-pass algorithm \aremsp\ is xxx times faster than \lrpc\ and xxx times faster than \arun.
-Another advantage of using \rems\ union-find approach is that its parallel implementation allows pixels of the image to be
-processed in any order and thus scales better with increasing number of processors. Therefore, we have also given the parallel implementation of proposed
+Another advantage of using \rems\ union-find approach is that its parallel implementation is shown to scale better
+with increasing number of processor \cite{Mostofa Multicore}. Parallel \rems\ union-find implementation thus allows us to
+process the pixels of the image in any order. Therefore, we propose a parallel implementation of our proposed
 sequential algorithm two-pass CCL algorithm called \paremsp. For scalability, our algorithm in in the first pass, divides the image among threads
 and each thread runs the scan strategy of \arun algorithm along with \remsp simultaneously. To merge the provisional labels on the image boundary,
 we use the parallel version of \remsp \cite{}. Our experiments show the scalability of \paremsp\ achieving speedups up to $19.5$ using $24$ cores
