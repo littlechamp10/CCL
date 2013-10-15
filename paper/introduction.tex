@@ -43,7 +43,7 @@ The \lrpc\ algorithm uses a decision tree to assign provisional labels and an ar
 to store label equivalence information. The \arun\ algorithm employs a special scan order over the data and three linear
 arrays instead of the conventional union-find datastructure. 
 We propose a two-pass algorithm for labeling the connected components called \aremsp, which is based on \rems\ union-find algorithm \cite{}
-and the scan strategy of \arun\ algorithm. Since \rems union-find uses compression technique called {\em Splicing} \cite{},
+and the scan strategy of \arun\ algorithm. Since \rems\ union-find uses compression technique called {\em Splicing} \cite{},
 our proposed sequential two-pass algorithm \aremsp\ is xxx times faster than \lrpc\ and xxx times faster than \arun.
 Another advantage of using \rems\ union-find approach is that its parallel implementation allows pixels of the image to be
 processed in any order and thus scales better with increasing number of processors. Therefore, we have also given the parallel implementation of proposed
