@@ -12,13 +12,14 @@ only used the $8$-connectedness of the pixel.
 \vspace{3mm}
 \subsection{\remsp\ Algorithm}
 
+In \remsp,\ we have used the decision tree suggested in \lrpc\ 
+for scanning and \rems\ union-find algorithm for storing label equivalance. The
+full algorithm for \remsp\ is given as Algorithm \ref{alg:RemSP}.
 
 In the first scan step of \remsp, we process image lines one by one using the
-forward scan mask as shown in Figure \ref{fscan1}. We have used the decision 
-tree proposed by \cite{Wu2009_LRPC} for determining the provisional label of current pixel
-$e$ as we can reduce the number of neighbors using decision tree. Instead of
+forward scan mask as shown in Figure \ref{fscan1}. We have used the decision tree proposed by \cite{Wu2009_LRPC} for determining the provisional label of current pixel $e$ as we can reduce the number of neighbors using decision tree. Instead of
 examining all four neighbors of pixel, say $e$, i.e. $a$, $b$, $c$ and $d$, we only
-examine the neighbors according to a desicion tree as shown in Figure \ref{dtree}.
+examine the neighbors according to a desicion tree as shown in Fig \ref{dtree}.
  Let $label$ denote the $2D$ array storing the labels and let $p$ denote equivalence array 
  then according to \lrpc\ algorithm,
 three functions used by this decision tree are defined as follows:
@@ -30,33 +31,34 @@ $2)$. The two-argument copy function, copy(c,a), contains one statements:
 $3)$. The new label function sets $count$ as $label(e)$, appends $count$ to array $p$, and increments $count$ by $1$.
 
 \input{figures}
-
+% \input{remsp-I}
 However, the implementation of \merge\ operation in our proporsed algorithm
 \remsp\ is different from that of in \lrpc.\
-We have used the implementation of union-find proposed by {\em Rem}
-\cite{Patwary2010_RemSP} for merge operation. {\em Rem} integrates the Union
-operation with a compression technique known as Splicing $(sp)$. In the case when 
-$rootx$ is to be moved to $p(rootx)$ it works as follows: just before this operation, 
-$rootx$ is stored in a temporary variable $z$ and 
-then, just before moving $rootx$ up to its parent $p(z)$, $p(rootx)$ is set to $p(rooty)$, 
-making the subtree rooted at 
-$rootx$ a sibling of $rooty$. This neither compromises the increasing parent property (because $p(rootx) < p(rooty)$) 
-nor invalidates the set structures (because the two sets will have been merged when the operation ends.) The effect of $sp$
-is that each new parent has a higher value than the value of the old parent, thus compressing the tree. The algorithm for
-\merge\ is given as Algorithm \ref{alg:merge}. After the first step, we carry
-out the analysis phase using \flatten\ algorithm. \flatten\ algorithm also
+We have used the implementation of union-find proposed by \rems\ 
+\cite{Patwary2010_RemSP} for merge operation. \rems\ integrates the Union
+operation with a compression technique known as Splicing $(sp)$. In the \merge\
+algorithm when $rootx$ is to be moved to $p(rootx)$, firstly $p(rootx)$ is
+stored in a temporary variable $z$ then $p(rootx)$ is set to $p(rooty)$, making the
+subtree rooted at $rootx$ a sibling of $rooty$ and finally $rootx$ is set to
+$z$. The algorithm for \merge\ is given as Algorithm \ref{alg:merge}. After the first step, we carry
+out the analysis phase using \flatten\ algorithm. In \flatten\ algorithm, we are
+giving smallest equivalent label of every connected component to all the pixels
+which belongs to that connected component. The algorithm also
 generates consecutive labels. The algorithm for \flatten\ is given as Algorithm
-\ref{alg:flatten}. The full algorithm for \remsp\ is given as Algorithm
-\ref{alg:RemSP}. The implementation of $RemSP-I$ is given in Appendix
-\ref{appendix}
+\ref{alg:flatten}. The implementation of $RemSP-I$ is given as Algorithm
+\ref{alg:RemSP-I}
 % \input{remsp-I}
 \input{remsp}
 \input{flatten}
 \subsection{\aremsp\ Algorithm}
 
+In \aremsp,\ we have used the decision tree suggested in \arun\ 
+for scanning and \rems\ union-find algorithm for storing label equivalance. The
+full algorithm for \aremsp\ is given as Algorithm \ref{alg:ARemSP}.
 
 In the first scan step of \aremsp,\ we process image two lines at a time and processes
-pixels two by two using the mask shown in figure \ref{fscan2} suggested in \cite{He2012_ARun}. 
+pixels two by two using the mask shown in Fig \ref{fscan2} suggested in
+\cite{He2012_ARun}.
 We will give the label to both $e$ and $g$ simultaneously. If both $e$ and $g$ are background pixels,
 then nothing needs to be done. If $e$ is a foreground pixel and there is no foreground pixel in the mask, we assign a 
 new provisional label to $e$ and if $g$ is a foreground pixel, we will give the
@@ -68,9 +70,8 @@ equivalent labels and needs to be merged. For all the cases, one can refer \cite
 However, our implementation of the union-find is different from \cite{He2012_ARun}.
 We use the implementation of union-find proposed by {\em Rem} \cite{Patwary2010_RemSP} for merge operation in
 \aremsp.\ We use \flatten\ for analysis phase and generating consequtive
-labels.
-The full algorithm for \aremsp\ is given as Algorithm \ref{alg:ARemSP}. The
-implementation of $RemSP-I$ is given in Appendix \ref{appendix}
+labels. The implementation of $ARemSP-I$ is given as Algorithm
+\ref{alg:ARemSP-I}.
 \input{aremsp}
 \input{merge}
 % \input{aremsp-I}

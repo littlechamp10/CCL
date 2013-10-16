@@ -2,13 +2,13 @@
 \label{sec:parallel_algo}
 
 In the following we describe how one can run \aremsp\ algorithm in parallel
-on a shared memory system. In doing so we make the assumption that memory read/write 
-operations are atomic and any operations issued concurrently by different processors will be executed in some unknown 
-sequential order unless specific constructs are used to ensure an ordering.
-However, two dependent operations issued by 
-the same processor will always be applied in the same order as they are issued. 
-This is in accordance with the memory model when using the atomic directive in
-{\em OpenMP}.
+on a shared memory system. In doing so we make the assumption about memory
+model as stated in {\em OpenMP} when we use atomic directive. We assume that
+memory read/write operations are atomic and any operations issued concurrently 
+by different processors will be executed in some unknown sequential order if
+no ordering constructs are being used. However, two dependent operations issued
+by the same processor will always be applied in the same order as they are
+issued.\cite{Patwary2012_PARemSP}
 
 In \paremsp, we divide the image among threads row-wise. The image is
 divided into chunks of equal size and given to the threads. In the first step,

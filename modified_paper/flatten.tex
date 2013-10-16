@@ -10,9 +10,9 @@
 		\State $k \gets 1$
 		\For{$i=1$ to $count$}
 			\If{$p[i] < i$}
-				\State $p[i] = p[p[i]]$
+				\State $p[i] \gets p[p[i]]$
 			\Else
-				\State $p[i] = k$
+				\State $p[i] \gets k$
 				\State $k++$
 			\EndIf
 		\EndFor

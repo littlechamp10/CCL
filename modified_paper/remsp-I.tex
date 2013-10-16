@@ -2,39 +2,37 @@
 \begin{algorithm}[h]
 \small
 {
-	\caption{Pseudo-code for RemSP Phase-I}
+	\caption{Pseudo-code for RemSP Scan Phase}
 	\label{alg:RemSP-I}
 	\textbf{Input:} $2D$ array $image$ containing the pixel values \\
 	\textbf{InOut:} $2D$ array $label$ containing the privisonal labels and $1D$ araay $p$ containing the equivalance info\\
 	\textbf{Output:} maximum value of provisional label in $count$
 	\begin{algorithmic}[1]
-	\Function{RemSP-I}{$image$}
+	\Function{Scan\_RemSP}{$image$}
 		\For{$row$ in $image$}
 			\For{$col$ in $row$}
 				\If{$image(e) = 1$}
 					\If{$image(b) = 1$}
-						\State $label(e) \gets label(b)$
+						\State $copy(b)$
 					\Else
 						\If{$image(c) = 1$}
 							\If{$image(a) = 1$}
-								\State $label(e) \gets merge(p,label(c),label(a))$
+								\State $copy(c,a)$
 							\Else
 								\If{$image(d) = 1$}
-									\State $label(e) \gets merge(p,label(c),label(d))$
+									\State $copy(c,d)$
 								\Else
-									\State $label(e) \gets label(c)$
+									\State $copy(c)$
 								\EndIf
 							\EndIf
 						\Else
 							\If{$image(a) = 1$}
-								\State $label(e) \gets label(a)$
+								\State $copy(a)$
 							\Else
 								\If{$image(d) = 1$}
-									\State $label(e) \gets label(d)$
+									\State $copy(d)$
 								\Else
-									\State $label(e) \gets count,$
-									\State $p[count] \gets count,$
-									\State $count++$
+									\State {\em new label}
 								\EndIf
 							\EndIf
 						\EndIf

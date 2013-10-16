@@ -1,14 +1,14 @@
 \begin{algorithm}[ht]
 \small
 {
-	\caption{Pseudo-code for ARemSP Phase-I}
+	\caption{Pseudo-code for ARemSP Scan Phase}
 	\label{alg:ARemSP-I}
 	\textbf{Input:} $2D$ array $image$ containing the pixel values \\
 	\textbf{InOut:} $2D$ array $label$ containing the privisonal labels and $1D$ araay $p$ containing the equivalance info\\
 	\textbf{Output:} maximum value of
 	provisional label in $count$
 	\begin{algorithmic}[1]
-	\Function{ARemSP-I}{$image$}
+	\Function{Scan\_ARemSP}{$image$}
 		\For{$row$ in $image$}
 			\For{$col$ in $row$}
 				\If{$image(e) = 1$}

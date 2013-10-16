@@ -1,6 +1,17 @@
 \section{Related Work}
 \label{sec:related_works}
 
+As mentioned in \cite{Suzuki2003_Linear}, there exists different types of CCL
+algorithms. Repeated pass or multi pass algorithm repeatedly scans the image
+forward and backward alternatively to give labels until no further changes can
+be made to the assigned pixels\cite{Haralick1981_Repeated}. The algorithm in
+\cite{Suzuki2003_Linear}, which we call as {\em Suzuki's} algorithm modifies the
+conventional multi pass algorithm using one-dimensional table. There exists a
+parallel implementation of {\em Suzuki's} algorithm using OpenMP in
+\cite{Niknam2010_Parallel}. According to experimental results in
+\cite{Niknam2010_Parallel}, the parallel implementation gets maximum speedup of
+2.5 on 4 threads.
+
 In any two-pass algorithm, there are two steps in scanning step: $1)$ examining neighbors of current pixel which already
 assigned labels to determine label for the current pixel, $2)$ storing label equivalence information to speed up the algorithm. 
 

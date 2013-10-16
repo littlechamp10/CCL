@@ -44,9 +44,15 @@ The algorithm in \cite{Wu2009_LRPC}, which we refer to as \lrpc, uses a decision
 to store label equivalence information. However, the technique for employed for union-find, Link by Rank and Path Compression is
 not the best technique available \cite{Patwary2012_PARemSP}. 
 The algorithm in \cite{He2012_ARun}, which we refer to as \arun, employs a special scan order over the data and three linear
-arrays instead of the conventional union-find datastructure. However, this unconventional implementation is not suited for parallel implementation.
+arrays instead of the conventional union-find datastructure. There
+exists a parallel implementation of \arun\ on TILE\-64 many core
+platform\cite{Chen2013_PARun}. According to the
+experimental results given in \cite{Chen2013_PARun}, they got a speedup of 10 on
+32 processor units. 
+As the parallel implementation is hardware specific and
+speedup is less than 33\% of the actual speedup so this unconventional implementation is not suited for parallel implementation.
 
-We propose $2$ two-pass algorithm for labeling the connected components called
+We propose two two-pass algorithm for labeling the connected components called
 \aremsp\ and \remsp, which are based on \rems\ union-find algorithm
 \cite{Patwary2010_RemSP} and the scan strategy of \arun\ and \lrpc\ algorithms.
 Since \rems\ union-find is an interleaved algorithm which implements immediate parent check test and 

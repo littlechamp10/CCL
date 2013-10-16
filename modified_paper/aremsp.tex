@@ -7,7 +7,7 @@
 	\textbf{Output:} $2D$ array $label$ containing the final labels
 	\begin{algorithmic}[1]
 	\Function{ARemSP}{$image$}
-		\State $ARemSP-I(image)$ \Comment{Scan Phase of RemSP}
+		\State $Scan\_ARemSP(image)$ \Comment{Scan Phase of RemSP}
 		\State $flatten(p,count)$ \Comment{Analysis Phase of RemSP}
 		\For{$row$ in $image$}  \Comment{Labeling Phase of RemSP}
 			\For{$col$ in $row$}
