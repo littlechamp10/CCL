@@ -7,9 +7,9 @@
 	\textbf{Output:} $2D$ array $label$ containing the final labels
 	\begin{algorithmic}[1]
 	\Function{ARemSP}{$image$}
-		\State $ARemSP-I(image)$ \Comment{Phase-I of ARemSP}
-		\State $flatten(p,count)$ 
-		\For{$row$ in $image$}  \Comment{Phase-II of ARemSP}
+		\State $ARemSP-I(image)$ \Comment{Scan Phase of RemSP}
+		\State $flatten(p,count)$ \Comment{Analysis Phase of RemSP}
+		\For{$row$ in $image$}  \Comment{Labeling Phase of RemSP}
 			\For{$col$ in $row$}
 				\State $label(e) \gets p[label(e)]$
 			\EndFor
