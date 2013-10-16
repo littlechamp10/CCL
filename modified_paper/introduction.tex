@@ -42,7 +42,7 @@ In this paper we focus on two-pass CCL algorithms. \cite{Wu2009_LRPC}, and \cite
 developed techniques for two-pass CCL algorithms.
 The algorithm in \cite{Wu2009_LRPC}, which we refer to as \lrpc, uses a decision tree to assign provisional labels and an array-based union-find datastructure
 to store label equivalence information. However, the technique for employed for union-find, Link by Rank and Path Compression is
-not the best technique available \cite{}. 
+not the best technique available \cite{Patwary2012_PARemSP}. 
 The algorithm in \cite{He2012_ARun}, which we refer to as \arun, employs a special scan order over the data and three linear
 arrays instead of the conventional union-find datastructure. However, this unconventional implementation is not suited for parallel implementation.
 
@@ -57,9 +57,9 @@ Another advantage of using \rems\ union-find approach is that its parallel imple
 with increasing number of processor \cite{Patwary2012_PARemSP}. Parallel \rems\ union-find implementation thus allows us to
 process the pixels of the image in any order. Therefore, we propose a parallel implementation of our proposed
 sequential algorithm two-pass CCL algorithm called \paremsp. For scalability,
-our algorithm in in the first pass, divides the image among threads and each
-thread runs the scan strategy of \arun\ algorithm along with \remsp\
-simultaneously. To merge the provisional labels on the image boundary, we use the parallel version of \remsp \cite{Patwary2012_PARemSP}. Our experiments show
+our algorithm in the first pass, divides the image into equal proportions and executes the scan strategy of \arun\ algorithm along with \remsp\
+concurrently on each portion of the image. To merge the provisional labels on the image boundary, we use the parallel version
+of \remsp \cite{Patwary2012_PARemSP}. Our experiments show
 the scalability of \paremsp\ achieving speedups up to $20.1$ using $24$ cores
 on shared memory architecture for an image of size $22,822 \times 20,384$.
 Additionally, the parallel algorithm does not make use of any hardware specific routines, and thus is highly portable.
