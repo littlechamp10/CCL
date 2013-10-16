@@ -1,21 +1,24 @@
 \section{Proposed Algorithm}
 \label{sec:proposed_algorithm}
 
-For an $M \times N$ image, we denote $image(a)$ to denote the pixel value of pixel $a$. As we are working with
-binary images, we suppose the value of foregroud pixel is 1 and that of background pixel is 0. All pixels in 
-the edge of an image are considered to be background pixels. We have proposed two $2$-pass sequential algorithms
-\remsp\ and \aremsp\ in this paper. These two algorithms are different in their
-first scan.
+Throughout the paper, for an $M \times N$ image, we denote $image(a)$ to denote the pixel value of pixel $a$.
+We consider binary images i.e. an containing of two types of pixels: object pixel and 
+background pixel. Generally, we consider value of object pixel as 1 and value of background pixel as 0. The connected
+component labeling problem is to assign a label to each object pixel so that connected object pixels have the same label.
+In $2D$ images, there are two ways of defining connectedness: $4$-connectedness and $8$-connectedness. In this paper, we have 
+only used the $8$-connectedness of the pixel.
 
+
+\vspace{3mm}
 \subsection{\remsp\ Algorithm}
 
 
-In the first scan of \remsp,\ we process image lines one by one using the
-forward scan mask as shown in figure \ref{fscan1}. We have used the decision 
+In the first scan step of \remsp, we process image lines one by one using the
+forward scan mask as shown in Figure \ref{fscan1}. We have used the decision 
 tree proposed by \cite{Wu2009_LRPC} for determining the provisional label of current pixel
 $e$ as we can reduce the number of neighbors using decision tree. Instead of
-examining all four neighbors of $e$, i.e., $a$, $b$, $c$ and $d$, they proposed
-to examine the neighbors according to a desicion tree as shown in figure \ref{dtree}.
+examining all four neighbors of pixel, say $e$, i.e. $a$, $b$, $c$ and $d$, we only
+examine the neighbors according to a desicion tree as shown in Figure \ref{dtree}.
  Let $label$ denote the $2D$ array storing the labels and let $p$ denote equivalence array 
  then according to \lrpc\ algorithm,
 three functions used by this decision tree are defined as follows:
@@ -48,18 +51,18 @@ given as Algorithm \ref{alg:RemSP}.
 \subsection{\aremsp\ Algorithm}
 
 
-In the first scan of \aremsp,\ we process image lines two by two and processes
+In the first scan step of \aremsp,\ we process image two lines at a time and processes
 pixels two by two using the mask shown in figure \ref{fscan2} suggested in \cite{He2012_ARun}. 
 We will give the label to both $e$ and $g$ simultaneously. If both $e$ and $g$ are background pixels,
-then needs to be done. If $e$ is a foreground pixel and there is no foreground pixel in the mask, we assign a 
+then nothing needs to be done. If $e$ is a foreground pixel and there is no foreground pixel in the mask, we assign a 
 new provisional label to $e$ and if $g$ is a foreground pixel, we will give the
 label of $e$ to $g$. If there are foreground pixels in the mask, then we assign $e$ any label assigned to 
 foreground pixels. In this case, if there is only one connected component in the mask then there is 
 no need for label equivalance. Otherwise, if there are more than one connected component in the mask and as 
 they are connected to $e$ so all the labels of the connected components are
-equivalent labels and needs to be merged.For all the cases,one can refer \cite{He2012_ARun}.
-In \cite{He2012_ARun}, they have used three arrays for merge operation. However, we have used the implementation of 
-union-find proposed by {\em Rem} \cite{Patwary2010_RemSP} for merge operation in
+equivalent labels and needs to be merged. For all the cases, one can refer \cite{He2012_ARun}.
+However, our implementation of the union-find is different from \cite{He2012_ARun}.
+We use the implementation of union-find proposed by {\em Rem} \cite{Patwary2010_RemSP} for merge operation in
 \aremsp.\ The full algorithm for \aremsp\ is given as Algorithm
 \ref{alg:ARemSP}.
 \input{aremsp}
