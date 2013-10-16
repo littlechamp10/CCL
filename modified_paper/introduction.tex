@@ -38,11 +38,10 @@ Lastly, the parallel algorithms have been developed for parallel machine models 
 Hoverver all these algorithms shares one common step, known as scanning step in which provisional label is given to each of the
 pixel depending on its neighbors.
 
-In this paper we focus on two-pass CCL algorithms. Link by Rank and Path
-Compression(\lrpc) \cite{Wu2009_LRPC}, and \arun \cite{He2012_ARun} are two
+In this paper we focus on two-pass CCL algorithms. \cite{Wu2009_LRPC}, and \cite{He2012_ARun} are two
 developed techniques for two-pass CCL algorithms.
-The \lrpc\ algorithm uses a decision tree to assign provisional labels and an array-based union-find datastructure
-to store label equivalence information. The \arun\ algorithm employs a special scan order over the data and three linear
+The algorithm in \cite{Wu2009_LRPC} uses a decision tree to assign provisional labels and an array-based union-find datastructure
+to store label equivalence information. The algorithm in \cite{He2012_ARun} employs a special scan order over the data and three linear
 arrays instead of the conventional union-find datastructure. 
 We propose a two-pass algorithm for labeling the connected components called
 \aremsp, which is based on \rems\ union-find algorithm \cite{Patwary2010_RemSP}
