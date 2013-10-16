@@ -1,0 +1,11 @@
+\section{Conclusion}
+\label{conclusion}
+In this paper, we presented $2$ sequential CCL algorithms \remsp\ and \aremsp\
+which are based on union-find technique of \rems\ algorithm and scan strategies 
+of \arun\ and \lrpc\ algorithms. \remsp\ algorithm uses the scan strategy of
+\lrpc\ algorithm whereas \arun\ uses the scan strategy of \arun\ algorithm.
+Based on the experiments, we found out that \aremsp\ outperforms over all the
+other sequential algorithms. Then we present the parallel version of \aremsp
+which gives a maximum speedup of $20.1$ on $24$ threads. Fig \ref{speed}
+indicates that the parallel algorithm is scalable. As the
+algorithm just uses the standard {\em OpenMP} directives thus is easily portable. 

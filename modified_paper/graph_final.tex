@@ -5,6 +5,14 @@
 xlabel=\# Threads,
 ylabel=Speedup,
 symbolic x coords={2,6,12,18,24}]
+
+\addplot+[sharp plot] coordinates{
+(2,1.54)
+(6,4.82)
+(12,8.98)
+(18,13.04)
+(24,16.70)
+};
 \addplot+[sharp plot] coordinates {
 (2,1.58)
 (6,5.22)
@@ -13,18 +21,11 @@ symbolic x coords={2,6,12,18,24}]
 (24,16.76)
 };
 \addplot+[sharp plot] coordinates{
-(2,1.54)
-(6,4.82)
-(12,8.98)
-(18,13.04)
-(24,16.70)
-};
-\addplot+[sharp plot] coordinates{
-(2,1.64)
-(6,5.47)
-(12,10.38)
-(18,15.12)
-(24,19.77)
+(2,1.45)
+(6,5.12)
+(12,9.53)
+(18,13.77)
+(24,17.74)
 };
 \addplot+[sharp plot] coordinates{
 (2,1.53)
@@ -34,12 +35,13 @@ symbolic x coords={2,6,12,18,24}]
 (24,19.18)
 };
 \addplot+[sharp plot] coordinates{
-(2,1.45)
-(6,5.12)
-(12,9.53)
-(18,13.77)
-(24,17.74)
+(2,1.64)
+(6,5.47)
+(12,10.38)
+(18,15.12)
+(24,19.77)
 };
+
 \addplot+[sharp plot] coordinates{
 (2,1.7)
 (6,5.54)
@@ -65,6 +67,14 @@ symbolic x coords={2,6,12,18,24}]
 xlabel=\# Threads,
 ylabel=Speedup,
 symbolic x coords={2,6,12,18,24}]
+\addplot+[sharp plot] coordinates{
+(2,1.48)
+(6,4.80)
+(12,8.91)
+(18,12.86)
+(24,16.30)
+};
+
 \addplot+[sharp plot] coordinates {
 (2,1.54)
 (6,5.18)
@@ -73,19 +83,13 @@ symbolic x coords={2,6,12,18,24}]
 (24,15.64)
 };
 \addplot+[sharp plot] coordinates{
-(2,1.48)
-(6,4.80)
-(12,8.91)
-(18,12.86)
-(24,16.30)
+(2,1.40)
+(6,5.11)
+(12,9.49)
+(18,13.69)
+(24,17.59)
 };
-\addplot+[sharp plot] coordinates{
-(2,1.60)
-(6,5.46)
-(12,10.34)
-(18,15.02)
-(24,19.58)
-};
+
 \addplot+[sharp plot] coordinates{
 (2,1.49)
 (6,5.29)
@@ -93,13 +97,16 @@ symbolic x coords={2,6,12,18,24}]
 (18,14.75)
 (24,18.73)
 };
+
 \addplot+[sharp plot] coordinates{
-(2,1.40)
-(6,5.11)
-(12,9.49)
-(18,13.69)
-(24,17.59)
+(2,1.60)
+(6,5.46)
+(12,10.34)
+(18,15.02)
+(24,19.58)
 };
+
+
 \addplot+[sharp plot] coordinates{
 (2,1.55)
 (6,5.53)
@@ -122,4 +129,5 @@ symbolic x coords={2,6,12,18,24}]
 }
 \caption{Speedup for different images and different numbers of threads for NLCD
 dataset}
+\label{speed}
 \end{figure*}

@@ -43,8 +43,12 @@ making the subtree rooted at
 $rootx$ a sibling of $rooty$. This neither compromises the increasing parent property (because $p(rootx) < p(rooty)$) 
 nor invalidates the set structures (because the two sets will have been merged when the operation ends.) The effect of $sp$
 is that each new parent has a higher value than the value of the old parent, thus compressing the tree. The algorithm for
-\merge\ is given as Algorithm \ref{alg:merge}. The full algorithm for \remsp\ is
-given as Algorithm \ref{alg:RemSP}.
+\merge\ is given as Algorithm \ref{alg:merge}. After the first step, we carry
+out the analysis phase using \flatten\ algorithm. \flatten\ algorithm also
+generates consecutive labels. The algorithm for \flatten\ is given as Algorithm
+\ref{alg:flatten}. The full algorithm for \remsp\ is given as Algorithm
+\ref{alg:RemSP}. The implementation of $RemSP-I$ is given in Appendix
+\ref{appendix}
 % \input{remsp-I}
 \input{remsp}
 \input{flatten}
@@ -63,8 +67,10 @@ they are connected to $e$ so all the labels of the connected components are
 equivalent labels and needs to be merged. For all the cases, one can refer \cite{He2012_ARun}.
 However, our implementation of the union-find is different from \cite{He2012_ARun}.
 We use the implementation of union-find proposed by {\em Rem} \cite{Patwary2010_RemSP} for merge operation in
-\aremsp.\ The full algorithm for \aremsp\ is given as Algorithm
-\ref{alg:ARemSP}.
+\aremsp.\ We use \flatten\ for analysis phase and generating consequtive
+labels.
+The full algorithm for \aremsp\ is given as Algorithm \ref{alg:ARemSP}. The
+implementation of $RemSP-I$ is given in Appendix \ref{appendix}
 \input{aremsp}
 \input{merge}
 % \input{aremsp-I}

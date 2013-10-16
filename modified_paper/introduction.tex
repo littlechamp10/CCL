@@ -46,10 +46,10 @@ not the best technique available \cite{Patwary2012_PARemSP}.
 The algorithm in \cite{He2012_ARun}, which we refer to as \arun, employs a special scan order over the data and three linear
 arrays instead of the conventional union-find datastructure. However, this unconventional implementation is not suited for parallel implementation.
 
-We propose a two-pass algorithm for labeling the connected components called
-\aremsp, which is based on \rems\ union-find algorithm \cite{Patwary2010_RemSP}
-and the scan strategy of \arun\ algorithm. Since \rems\ union-find is an
-interleaved algorithm which implements immediate parent check test and 
+We propose $2$ two-pass algorithm for labeling the connected components called
+\aremsp\ and \remsp, which are based on \rems\ union-find algorithm
+\cite{Patwary2010_RemSP} and the scan strategy of \arun\ and \lrpc\ algorithms.
+Since \rems\ union-find is an interleaved algorithm which implements immediate parent check test and 
 compression technique called {\em Splicing} \cite{Patwary2010_RemSP}, our
 proposed sequential two-pass algorithm \aremsp\ is $39$\% faster than \lrpc\
 and $4$\% faster than \arun.
@@ -70,6 +70,7 @@ In section \ref{sec:proposed_algorithm}, we propose our sequential two-pass CCL
 algorithm \aremsp\ and it's parallel version in section
 \ref{sec:parallel_algo}.
 We present our experimental methodology and results in section
-\ref{sec:experiments}. We conclude our work and propose future work in section \ref{}.
+\ref{sec:experiments}. We conclude our work and propose future work in section
+\ref{conclusion}.
 
 

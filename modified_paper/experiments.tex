@@ -17,16 +17,29 @@ Texture, Arial and Miscellaneous dataset contain images of size $1024 \times
 NCLD dataset contains images of size bigger than $3000 \times
 4000$. The biggest image in the dataset is $22,822 \times 20,384$.
 
-Firstly, we did the experiment over all the sequential algorithms. The result is given in Table \ref{table:seq}. 
+Firstly, we did the experiment over all the sequential algorithms. The
+experimental results are shown in Table \ref{table:seq}. In the table, we have
+shown the minimum, maximum and average execution time of all the $4$ datasets. 
 \input{table}
-We can see that {\em ARemSP} is best among all
-the sequential algorithms. Then we tested the parallel algorithm {\em PARemSP} over all the images. 
+As we can see that execution time of {\em ARemSP} is lowest among all
+the sequential algorithms thus {\em ARemSP} is best among all the sequential
+algorithms.
+Then we tested the parallel algorithm {\em PARemSP} over all the images.
 Fig \ref{line}-\ref{linet} shows the speedup of the algorithm for 
-NCLD image dataset. We get a maximum speedup of $20.1$ for image of size $22822 \times 20384$. 
+NCLD image dataset.The images are labeled in the increasing order of their
+sizes. We get a maximum speedup of $20.1$ for image of size $22822 \times 20384$.
 Fig \ref{line} shows the speedup for {\em Phase-$I$} of \paremsp\ i.e. 
 the local computation and fig \ref{linet} shows the overall speedup (i.e. local + merge). We can see that there is not 
-significant difference between both the speedups, implying that merge operation does not have a significant overheard.
-We have also shown the speedup for all the other datasets in fig \ref{bar}.
-We get a maximum seedup of $10$ in this case as the images are small in size.  
+significant difference between both the speedups, implying that merge operation
+does not have a significant overhead. 
+We can also see from the graph that as the image size increases, speedup
+increases so we can conclude that we will get linear speedup as the image size
+increases. We have also shown the speedup for all the other datasets in fig
+\ref{bar}.
+We get a maximum seedup of $10$ in this case as the images are small in size.
+The speedup also decreases in some cases as the number of threads increases.
+This is because the image size is small so as the number of threads increases,
+the threads will have less work to perform and the overhead due to thread
+creation will increase.
 \input{bar_graph}
 
