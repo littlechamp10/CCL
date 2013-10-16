@@ -43,7 +43,7 @@ developed techniques for two-pass CCL algorithms.
 The algorithm in \cite{Wu2009_LRPC}, which we refer to as \lrpc, uses a decision tree to assign provisional labels and an array-based union-find datastructure
 to store label equivalence information. However, the technique for employed for union-find, Link by Rank and Path Compression is
 not the best technique available \cite{}. 
-The algorithm in \cite{He2012_ARun}, which we refer to as \Arun, employs a special scan order over the data and three linear
+The algorithm in \cite{He2012_ARun}, which we refer to as \arun, employs a special scan order over the data and three linear
 arrays instead of the conventional union-find datastructure. However, this unconventional implementation is not suited for parallel implementation.
 We propose a two-pass algorithm for labeling the connected components called
 \aremsp, which is based on \rems\ union-find algorithm \cite{Patwary2010_RemSP}
