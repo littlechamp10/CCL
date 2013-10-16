@@ -1,0 +1,46 @@
+\begin{algorithm}[H]
+\small
+{
+	\caption{Pseudo-code for PARemSP}
+	\label{alg:PARemSP}
+	\textbf{Input:} $2D$ array $image$ containing the pixel values \\
+	\textbf{Output:} $2D$ array $label$ containing the final labels
+	\begin{algorithmic}[1]
+	\Function{PARemSP}{$image$}
+		\State $num iter \gets row/2 $ \Comment{As we are processing $2$ rows at a time}
+		\State \# pragma omp parallel
+			\State $chunk \gets numiter/number of threads $ 
+			\State $size \gets 2 \times chunk$
+			\State $start \gets $ start index of the thread
+			\State $count \gets start \times col$
+			\State \# pragma omp for
+				\State $ARemSP-I(image)$
+			\State \# pragma omp for
+				\For {$i=size$ to $row-1$}
+					  \For{$col$ in $row$}
+					  	\If{$label(e) \neq 0$}
+					  		\If{$label(b) \neq 0$}
+					  			\State $merger(p,label(e),label(b))$
+					  		\Else
+					  			\If{$label(a) \neq 0$}
+									\State $merger(p,label(e),label(a))$
+								\EndIf
+								\If{$label(c) \neq 0$}
+									\State $merger(p,label(e),label(c))$
+								\EndIf
+							\EndIf
+						\EndIf
+					\EndFor
+					\State $i \gets i + size$
+				\EndFor		
+		\State $flatten(p,count)$ 
+		\For{$row$ in $image$}  
+			\For{$col$ in $row$}
+				\State $label(e) \gets p[label(e)]$
+			\EndFor
+		\EndFor		
+	\EndFunction
+	\end{algorithmic}	
+}
+\end{algorithm}
+

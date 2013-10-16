@@ -1,0 +1,73 @@
+\section{Introduction}
+
+One of the most fundamental operations in pattern recognition is the labeling of connected components in a binary image.
+Connected-component labeling(CCL) is a procedure for assigning a unique label to each object (or a connected component) in 
+an image. Because these labels are key for other analytical procedures, connected-component labeling is an 
+indispensable part of most applications in pattern recognition and computer vision, such as fingerprint identification,
+character recognition, automated inspection, target recognition, face identification, medical image analysis, and 
+computer-aided diagnosis. In many cases, it is also one of the most time-consuming tasks among other 
+pattern-recognition algorithms \cite{Alnuweiri1992_Parallel}. Therefore, connected-component labeling continues 
+to be an active area of research \cite{Gonzales_Digital,Agarwal2006_Efficient,Chang2004_Linear,Hayashi2001_Fast,
+Hu2005_Fast,Knop1998_Parallel,Moga1997_Parallel,Wang2003_Parallel}.
+
+%%%%%%%%%%%%%THIS PARAGRAPH IS DOESN'T FLOW - Consider revising it or moving it%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%In this paper, we only consider the problem of labeling binary images stored as $2D$ array of pixels. These images are 
+%typically the output from another image-processing step.A binary image contains two types of pixels: object pixel and 
+%background pixel.Generally, we consider value of object pixel as 1 and value of background pixel as 0. The connected-
+%component labeling problem is to assign a label to each object pixel so that connected object pixels have the same label.
+%In $2D$ images, there are two ways of defining connectedness: $4$-connectednss and $8$-connectedness. In the paper, we have 
+%only used the $8$-connectedness of the pixel.
+
+There exist many algorithms for computing Connected components in a given image. These algorithms are categorized into
+mainly four groups %as mentioned by%
+\cite{Suzuki2003_Linear}
+: $1)$ repeated pass algorithms, $2)$ two-pass algorithms $3)$ Algorithms with hierarchical tree equivalent representations 
+of the data, $4)$ parallel algorithms.
+The repeated pass algorithms perform repeated passes over an image in forward and backward raster directions alternately
+to propagate the label equivalences until no labels change.
+In two-pass algorithms, during the first pass, provisional labels are assigned to connected components;
+the label equivalences are stored in a one-dimensional or a two-dimensional table array. After the first pass, the label 
+equivalences are resolved by some search. This step is often performed by using
+a search algorithm such as the union-find algorithm.
+The results of resolving are generally stored in a one-dimensional table. During the second pass, the provisional labels are 
+replaced by the smallest equivalent label using the table. As the algorithm traverses image twice that's why these algorithms 
+are called two-pass algorithms.
+In algorithms that employ hierarchical tree structures i.e., n-ary tree such as binary-tree, quad-tree, octree, etc., the
+label equivalences are resolved by using a search algorithm such as the union-find algorithm.
+Lastly, the parallel algorithms have been developed for parallel machine models such as a mesh connected massively parallel processor.
+Hoverver all these algorithms shares one common step, known as scanning step in which provisional label is given to each of the
+pixel depending on its neighbors.
+
+In this paper we focus on two-pass CCL algorithms. Link by Rank and Path
+Compression(\lrpc) \cite{Wu2009_LRPC}, and \arun \cite{He2012_ARun} are two
+developed techniques for two-pass CCL algorithms.
+The \lrpc\ algorithm uses a decision tree to assign provisional labels and an array-based union-find datastructure
+to store label equivalence information. The \arun\ algorithm employs a special scan order over the data and three linear
+arrays instead of the conventional union-find datastructure. 
+We propose a two-pass algorithm for labeling the connected components called
+\aremsp, which is based on \rems\ union-find algorithm \cite{Patwary2010_RemSP}
+and the scan strategy of \arun\ algorithm. Since \rems\ union-find is an
+interleaved algorithm which implements immediate parent check test and 
+compression technique called {\em Splicing} \cite{Patwary2010_RemSP}, our
+proposed sequential two-pass algorithm \aremsp\ is $39$\% faster than \lrpc\
+and $4$\% faster than \arun.
+Another advantage of using \rems\ union-find approach is that its parallel implementation is shown to scale better
+with increasing number of processor \cite{Patwary2012_PARemSP}. Parallel \rems\ union-find implementation thus allows us to
+process the pixels of the image in any order. Therefore, we propose a parallel implementation of our proposed
+sequential algorithm two-pass CCL algorithm called \paremsp. For scalability,
+our algorithm in in the first pass, divides the image among threads and each
+thread runs the scan strategy of \arun\ algorithm along with \remsp\
+simultaneously. To merge the provisional labels on the image boundary, we use the parallel version of \remsp \cite{Patwary2012_PARemSP}. Our experiments show
+the scalability of \paremsp\ achieving speedups up to $20.1$ using $24$ cores
+on shared memory architecture for an image of size $22,822 \times 20,384$.
+Additionally, the parallel algorithm does not make use of any hardware specific routines, and thus is highly portable.
+
+The remainder of this paper is organized as follows. In section
+\ref{sec:related_works}, we provided related work on connected component labeling.
+In section \ref{sec:proposed_algorithm}, we propose our sequential two-pass CCL
+algorithm \aremsp\ and it's parallel version in section
+\ref{sec:parallel_algo}.
+We present our experimental methodology and results in section
+\ref{sec:experiments}. We conclude our work and propose future work in section \ref{}.
+
+

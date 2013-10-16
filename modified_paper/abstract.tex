@@ -1,0 +1,22 @@
+\begin{abstract}
+Connected Component Labeling(CCL) is one of the most important step in pattern recognition and image processing. Connected
+component labeling assigns labels to a pixel such that adjacent pixels sharing the same features are assigned the same label.
+Typically, CCL requires several passes over the data. For example, in a two-pass technique, the first pass, each pixel is given
+a provisional label and label equivalence information is stored. In the second pass,an actual label is given to each pixel. 
+Suzuki et al have proposed two algorithms for CCL with two-pass technique called Link by Rank and Path Compression(LRPC), and ARun.
+The {\em LRPC} algorithm uses a decision tree to assign provisional labels and
+an array-based union-find datastructure to store label equivalence information.
+The {\em ARun} algorithm employs a special scan order over the data and three
+linear arrays instead of the conventional union-find datastructure.
+To the best of our knowledge, there has not been any effort yet on parallelizing two-pass CCL for shared memory architecture.
+
+We present a scalable parallel two-pass CCL algorithm called {\em PARemSP},
+which employs scan strategy of {\em ARun} algorithm and the best union-find
+technique called {\em RemSP} for storing label equivalence information of pixels
+in a $2$-D image. In the first pass, we divide the image among threads and each
+thread runs the scan strategy of {\em ARun} algorithm along with {\em RemSP}
+simultaneously. As {\em RemSP} is easily parallelizable, we use the parallel
+version of {\em RemSP} for merging the pixels on the boundary. Our experiments
+show the scalability of {\em PARemSP} achieving speedups up to $20.1$ using $24$
+cores on shared memory architecture for an image of size $22822 \times 20384$. Additionally, the parallel algorithm does not make use of any hardware specific routines, and thus is highly portable.
+\end{abstract}
