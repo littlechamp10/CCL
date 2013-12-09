@@ -1,0 +1,18 @@
+\vspace{\sectionSpace}
+\section{Conclusion}
+\label{conclusion}
+In this paper, we presented two sequential CCL algorithms \nremsp\ and \aremsp\
+which are based on union-find technique of \rems\ algorithm and scan strategies 
+of \arun\ and \lrpc\ algorithms. \nremsp\ algorithm uses the scan strategy of
+\lrpc\ algorithm whereas \aremsp\ uses the scan strategy of \arun\ algorithm.
+Based on the experiments, we found out that \aremsp\ outperforms all the
+other sequential algorithms. We also implement a portable parallel
+implementation of \aremsp\ for shared memory computers with standard OpenMP
+directives.
+Our proposed algorithm, \paremsp,\ divides the image into equal proportions and
+executes the scan. 
+To merge the provisional labels on the image boundary, we use the parallel version of \rems\ algorithm. 
+Our experimental results conducted on a shared memory computer show scalable performance, achieving speedups up
+to a factor of $20.1$ when using $24$ cores on data set of pixel size $22,822
+\times 20, 384$. Thus, our parallel algorithm achieves linear scaling for large
+fixed problem size while the number of processing elements are increased.

@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: unsrt.bst
+Database file #1: main.bib
+Warning--there's a number but no volume in samet1985computing
+Warning--can't use both volume and number fields in tamminen1984efficient
+Warning--can't use both volume and number fields in Niknam2010_Parallel
+You've used 43 entries,
+            1791 wiz_defined-function locations,
+            734 strings with 11112 characters,
+and the built_in function-call counts, 11733 in all, are:
+= -- 1145
+> -- 415
+< -- 19
++ -- 155
+- -- 112
+* -- 826
+:= -- 1718
+add.period$ -- 136
+call.type$ -- 43
+change.case$ -- 42
+chr.to.int$ -- 0
+cite$ -- 46
+duplicate$ -- 531
+empty$ -- 1155
+format.name$ -- 112
+if$ -- 2679
+int.to.chr$ -- 0
+int.to.str$ -- 43
+missing$ -- 43
+newline$ -- 217
+num.names$ -- 43
+pop$ -- 112
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 287
+stack$ -- 0
+substring$ -- 999
+swap$ -- 170
+text.length$ -- 19
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 3
+while$ -- 134
+width$ -- 45
+write$ -- 483
+(There were 3 warnings)

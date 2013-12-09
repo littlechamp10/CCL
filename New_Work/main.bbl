@@ -1,0 +1,258 @@
+\begin{thebibliography}{10}
+
+\bibitem{Wu2009_LRPC}
+Kesheng Wu, Ekow Otoo, and Kenji Suzuki.
+\newblock Optimizing two-pass connected-component labeling algorithms.
+\newblock {\em Pattern Analysis and Applications}, 12(2):117--135, 2009.
+
+\bibitem{He2012_ARun}
+Lifeng He, Yuyan Chao, and Kenji Suzuki.
+\newblock A new two-scan algorithm for labeling connected components in binary
+  images.
+\newblock In {\em Proceedings of the World Congress on Engineering}, volume~2,
+  2012.
+
+\bibitem{Alnuweiri1992_Parallel}
+Hussein~M Alnuweiri and Viktor~K Prasanna.
+\newblock Parallel architectures and algorithms for image component labeling.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  14(10):1014--1034, 1992.
+
+\bibitem{Gonzales_Digital}
+Rafael~C Gonzales and RE~Woods.
+\newblock Digital image processing, 1993.
+
+\bibitem{Agarwal2006_Efficient}
+Pankaj~K Agarwal, Lars Arge, and Ke~Yi.
+\newblock I/o-efficient batched union-find and its applications to terrain
+  analysis.
+\newblock In {\em Proceedings of the twenty-second annual symposium on
+  Computational geometry}, pages 167--176. ACM, 2006.
+
+\bibitem{Chang2004_Linear}
+Fu~Chang, Chun-Jen Chen, and Chi-Jen Lu.
+\newblock A linear-time component-labeling algorithm using contour tracing
+  technique.
+\newblock {\em Computer Vision and Image Understanding}, 93(2):206--220, 2004.
+
+\bibitem{Hayashi2001_Fast}
+Hiroki Hayashi, Mineichi Kudo, Jun Toyama, and Masaru Shimbo.
+\newblock Fast labelling of natural scenes using enhanced knowledge.
+\newblock {\em Pattern Analysis \& Applications}, 4(1):20--27, 2001.
+
+\bibitem{Hu2005_Fast}
+Qingmao Hu, Guoyu Qian, and Wieslaw~L Nowinski.
+\newblock Fast connected-component labelling in three-dimensional binary images
+  based on iterative recursion.
+\newblock {\em Computer Vision and Image Understanding}, 99(3):414--434, 2005.
+
+\bibitem{Knop1998_Parallel}
+Felipe Knop and Vernon Rego.
+\newblock Parallel labeling of three-dimensional clusters on networks of
+  workstations.
+\newblock {\em Journal of Parallel and Distributed Computing}, 49(2):182--203,
+  1998.
+
+\bibitem{Moga1997_Parallel}
+Alina~N Moga and Moncef Gabbouj.
+\newblock Parallel image component labelling with watershed transformation.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, 19(5):441--450, 1997.
+
+\bibitem{Wang2003_Parallel}
+Kuang-Bor Wang, Tsorng-Lin Chia, Zen Chen, and Der-Chyuan Lou.
+\newblock Parallel execution of a connected component labeling operation on a
+  linear array architecture.
+\newblock {\em J. Inf. Sci. Eng.}, 19(2):353--370, 2003.
+
+\bibitem{Suzuki2003_Linear}
+Kenji Suzuki, Isao Horiba, and Noboru Sugie.
+\newblock Linear-time connected-component labeling based on sequential local
+  operations.
+\newblock {\em Computer Vision and Image Understanding}, 89(1):1--23, 2003.
+
+\bibitem{Haralick1981_Repeated}
+RM~Haralick.
+\newblock Some neighborhood operators.
+\newblock In {\em Real-Time Parallel Computing}, pages 11--35. Springer, 1981.
+
+\bibitem{Hashizume1990_Algorithm}
+A~Hashizume, R~Suzuki, H~Yokouchi, H~Horiuchi, and S~Yamamato.
+\newblock An algorithm of automated rbc classification and its evaluation.
+\newblock {\em Bio Medical Engineering}, 28(1):25--32, 1990.
+
+\bibitem{gotoh1990high}
+Toshiyuki Gotoh, Yoshiyuki Ohta, Masumi Yoshida, and Yoshiaki Shirai.
+\newblock High-speed algorithm for component labeling.
+\newblock {\em Systems and Computers in Japan}, 21(5):74--84, 1990.
+
+\bibitem{gotoh1987component}
+Toshiyuki Gotoh, Yoshiyuki Ohta, Masumi Yoshida, and Yoshio Shirai.
+\newblock Component labeling algorithm for video rate processing.
+\newblock In {\em Hague International Symposium}, pages 217--224. International
+  Society for Optics and Photonics, 1987.
+
+\bibitem{komeichi1989video}
+Masatoshi Komeichi, Yoshiyuki Ohta, Toshiyuki Gotoh, Toshiya Mima, and Masumi
+  Yoshida.
+\newblock Video-rate labeling processor.
+\newblock In {\em 1988 Intl Congress on Optical Science and Engineering}, pages
+  69--76. International Society for Optics and Photonics, 1989.
+
+\bibitem{lumia1983new}
+Ronald Lumia.
+\newblock A new three-dimensional connected components algorithm.
+\newblock {\em Computer Vision, Graphics, and Image Processing},
+  23(2):207--217, 1983.
+
+\bibitem{lumia1983new_c}
+Ronald Lumia, Linda Shapiro, and Oscar Zuniga.
+\newblock A new connected components algorithm for virtual memory computers.
+\newblock {\em Computer Vision, Graphics, and Image Processing},
+  22(2):287--300, 1983.
+
+\bibitem{naoi1995high}
+Satoshi Naoi.
+\newblock High-speed labeling method using adaptive variable window size for
+  character shape feature.
+\newblock In {\em IEEE Asian Conference on computer vision}, volume~1, pages
+  408--411, 1995.
+
+\bibitem{rosenfeld1970connectivity}
+Azriel Rosenfeld.
+\newblock Connectivity in digital pictures.
+\newblock {\em Journal of the ACM (JACM)}, 17(1):146--160, 1970.
+
+\bibitem{rosenfeld1966sequential}
+Azriel Rosenfeld and John~L Pfaltz.
+\newblock Sequential operations in digital picture processing.
+\newblock {\em Journal of the ACM (JACM)}, 13(4):471--494, 1966.
+
+\bibitem{shirai1987labeling}
+Y~Shirai.
+\newblock Labeling connected regions.
+\newblock {\em Three-Dimensional Computer Vision}, pages 86--89, 1987.
+
+\bibitem{dillencourt1992general}
+Michael~B Dillencourt, Hannan Samet, and Markku Tamminen.
+\newblock A general approach to connected-component labeling for arbitrary
+  image representations.
+\newblock {\em Journal of the ACM (JACM)}, 39(2):253--280, 1992.
+
+\bibitem{gargantini1982separation}
+Irene Gargantini and Zale Tabakman.
+\newblock Separation of connected component using linear quad-and oct-trees.
+\newblock In {\em Proc. 12th Conf. Numerical Mathematics and Computation},
+  volume~37, pages 257--276, 1982.
+
+\bibitem{hecquard1991connected}
+Jean Hecquard and Raj Acharya.
+\newblock Connected component labeling with linear octree.
+\newblock {\em Pattern recognition}, 24(6):515--531, 1991.
+
+\bibitem{samet1981connected}
+Hanan Samet.
+\newblock Connected component labeling using quadtrees.
+\newblock {\em Journal of the ACM (JACM)}, 28(3):487--501, 1981.
+
+\bibitem{samet1985computing}
+Hanan Samet and Markku Tamminen.
+\newblock Computing geometric properties of images represented by linear
+  quadtrees.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, (2):229--240, 1985.
+
+\bibitem{samet1988efficient}
+Hanan Samet and Markku Tamminen.
+\newblock Efficient component labeling of images of arbitrary dimension
+  represented by linear bintrees.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, 10(4):579--586, 1988.
+
+\bibitem{samet1986improved}
+Hanan Samet and Markku Tamminen.
+\newblock An improved approach to connected component labeling of images.
+\newblock In {\em International Conference on Computer Vision And Pattern
+  Recognition}, pages 312--318, 1986.
+
+\bibitem{tamminen1984efficient}
+Markku Tamminen and Hanan Samet.
+\newblock Efficient octree conversion by connectivity labeling.
+\newblock In {\em ACM SIGGRAPH Computer Graphics}, volume~18, pages 43--51.
+  ACM, 1984.
+
+\bibitem{bhattacharya1996connected}
+Prabir Bhattacharya.
+\newblock Connected component labeling for binary images on a reconfigurable
+  mesh architecture.
+\newblock {\em Journal of Systems Architecture}, 42(4):309--313, 1996.
+
+\bibitem{choudhary1994connected}
+Alok Choudhary and Rajeev Thakur.
+\newblock Connected component labeling on coarse grain parallel computers: an
+  experimental study.
+\newblock {\em Journal of Parallel and Distributed Computing}, 20(1):78--83,
+  1994.
+
+\bibitem{hirschberg1979computing}
+Daniel~S. Hirschberg, Ashok~K. Chandra, and Dilip~V. Sarwate.
+\newblock Computing connected components on parallel computers.
+\newblock {\em Communications of the ACM}, 22(8):461--464, 1979.
+
+\bibitem{manohar1989connected}
+M~Manohar and HK~Ramapriyan.
+\newblock Connected component labeling of binary images on a mesh connected
+  massively parallel processor.
+\newblock {\em Computer vision, graphics, and image processing},
+  45(2):133--149, 1989.
+
+\bibitem{nassimi1980finding}
+David Nassimi and Sartaj Sahni.
+\newblock Finding connected components and connected ones on a mesh-connected
+  parallel computer.
+\newblock {\em SIAM Journal on computing}, 9(4):744--757, 1980.
+
+\bibitem{olariu1993fast}
+Stephan Olariu, James~L Schwing, and Jingyuan Zhang.
+\newblock Fast component labelling and convex hull computation on
+  reconfigurable meshes.
+\newblock {\em Image and vision computing}, 11(7):447--455, 1993.
+
+\bibitem{Patwary2012_PARemSP}
+Md~Patwary, Mostofa Ali, Peder Refsnes, and Fredrik Manne.
+\newblock Multi-core spanning forest algorithms using the disjoint-set data
+  structure.
+\newblock In {\em Parallel \& Distributed Processing Symposium (IPDPS), 2012
+  IEEE 26th International}, pages 827--835. IEEE, 2012.
+
+\bibitem{Chen2013_PARun}
+Chien-Wei Chen, Yi-Ta Wu, Shau-Yin Tseng, and Wen-Shan Wang.
+\newblock Parallelization of connected-component labeling on tile64 many-core
+  platform.
+\newblock {\em Journal of Signal Processing Systems}, pages 1--15, 2013.
+
+\bibitem{Patwary2010_RemSP}
+Md~Mostofa~Ali Patwary, Jean Blair, and Fredrik Manne.
+\newblock Experiments on union-find algorithms for the disjoint-set data
+  structure.
+\newblock In {\em Experimental Algorithms}, pages 411--423. Springer, 2010.
+
+\bibitem{Dijkstra1976_RemSP}
+Edsger~Wybe Dijkstra, Edsger~Wybe Dijkstra, Edsger~Wybe Dijkstra, and
+  Edsger~Wybe Dijkstra.
+\newblock {\em A discipline of programming}, volume~1.
+\newblock prentice-hall Englewood Cliffs, 1976.
+
+\bibitem{Niknam2010_Parallel}
+Mehdi Niknam, Parimala Thulasiraman, and Sergio Camorlinga.
+\newblock A parallel algorithm for connected component labelling of gray-scale
+  images on homogeneous multicore architectures.
+\newblock In {\em Journal of Physics: Conference Series}, volume 256, page
+  012010. IOP Publishing, 2010.
+
+\bibitem{He2008_Run}
+Lifeng He, Yuyan Chao, and Kenji Suzuki.
+\newblock A run-based two-scan labeling algorithm.
+\newblock {\em Image Processing, IEEE Transactions on}, 17(5):749--756, 2008.
+
+\end{thebibliography}

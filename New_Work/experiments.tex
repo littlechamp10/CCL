@@ -1,0 +1,57 @@
+\vspace{\sectionSpace}
+\section{Experiments}
+\label{sec:experiments}
+
+\input{graph_final}
+
+For the experiments we used a computing node of Hopper, a Cray XE6 distributed memory parallel computer. 
+The node has 2 twelve-core AMD ‘MagnyCours’ 2.1-GHz processors and 32 GB DDR3 1333-MHz memory. 
+Each core has its own L1 and L2 caches, with 64 KB and 512 KB, respectively. 
+One 6-MB L3 cache is shared between 6 cores on the MagnyCours processor. 
+All algorithms were implemented in C using OpenMP and compiled with gcc.
+
+Our test data set consists of four types of image data set: Texture, Aerial,
+Miscellaneous and NLCD. First three data sets are taken from the image database of the University of 
+Southern
+California.\footnote{\url{http://sipi.usc.edu/database/}} 
+The fourth data set is taken from US National Cover Database
+$2006$.\footnote{\url{http://dx.doi.org/10.1016/j.cageo.2013.05.014}} All of the
+images are converted to binary images by means of MATLAB. However, note that our
+algorithm can be easily extended to gray scale images.
+Texture, Aerial and Miscellaneous data set contain images of size $1024 \times
+1024$ or less.
+NCLD data set contains images of size bigger than $3000 \times
+4000$. The biggest image in the data set is $22,822 \times 20,384$.
+
+Firstly, we performed the experiment over all the sequential algorithms. The
+experimental results are shown in Table \ref{table:seq}. In the table, we have
+shown the minimum, maximum and average execution time of all the four data sets. 
+\input{aremsp-I}
+\input{table}
+\input{image_size}
+\input{parallel_table}
+
+As we can see that execution time of \aremsp\ is lowest among all
+the sequential algorithms. Thus \aremsp\ is best among all the sequential
+algorithms.
+Next, we show our results for the parallel algorithm \paremsp\ over all the images.
+Figure \ref{line}-\ref{linet} shows the speedup of the algorithm for 
+NCLD image data set. The size of the images are given in Table \ref{table:sequ}.
+We get a maximum speedup of $20.1$ on $24$ cores for image of size $22,822
+\times 20,384$.
+
+Figure \ref{line} shows the speedup for {\em Phase-$I$} of \paremsp\ i.e. 
+the local computation and Figure \ref{linet} shows the overall speedup (i.e.
+local + merge). We can see that there is not significant difference between both speedups, implying that merge operation
+does not have a significant overhead. 
+Also as can be seen from the graph, as the image size increases, speedup also
+increases. Therefore, our parallel implementation is able to achieve near linear
+speed for large data sets. We have also shown the speedup for all the other data sets in Figure \ref{bar}.
+We get a maximum speedup of $10$ in this case as the images are $1,024 \times
+1,024$ pixels or less in size. The speedup also decreases in some cases as the
+number of threads increases.
+This is because the image size is small so as the number of threads increases,
+the threads will have less work to perform and the overhead due to thread
+creation will increase.
+\input{bar_graph}
+

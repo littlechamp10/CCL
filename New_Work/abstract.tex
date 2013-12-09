@@ -1,0 +1,32 @@
+\begin{abstract}
+Connected Component Labeling (CCL) is one of the most important step in pattern
+recognition and image processing. It assigns labels to the pixels such that
+adjacent pixels sharing the same features are assigned the same label.
+Typically, CCL requires several passes over the data. For example, in a two-pass technique, 
+each pixel is given a provisional label in the first pass whereas an actual
+label is assigned in the second pass. Suzuki et al have proposed two
+algorithms for CCL with two-pass technique, which we refer to as \lrpc\ and
+\arun\cite{Wu2009_LRPC, He2012_ARun}.\ The \lrpc\ algorithm uses a decision tree
+to assign provisional labels and an array-based union-find data structure to store label equivalence information.
+The \arun\ algorithm employs a special scan order over the data and three
+linear arrays instead of the conventional union-find data structure.
+As the resolution of images becomes higher due to better digital camera
+technology and dynamic image matching has been common for surveillance, the
+connected component problem becomes a data-intensive application and hence the need for exploiting parallelism arises.
+The \arun\ algorithm has been parallelized for Tile64 many-core platform,
+however the achieved speedup of 10 on 32 cores is sub-linear.
+
+We present a scalable parallel two-pass CCL algorithm, called \paremsp,\ 
+which employs scan strategy of \arun\ algorithm and the best union-find
+technique called \remsp,\ which uses \rems\ algorithm for storing label
+equivalence information of pixels in a 2-D image. In the first pass, we divide the image among threads and each
+thread runs the scan strategy of \arun\ algorithm along with \remsp\
+simultaneously. As \remsp\ is easily parallelizable, we use the parallel
+version of \remsp\ for merging the pixels on the boundary. Our experiments
+show the scalability of \paremsp\ achieving speedups up to $20.1$ using $24$
+cores on shared memory architecture using {\em OpenMP} for an image of size
+$22,822 \times 20,384$. We find that our proposed parallel algorithm achieves
+linear scaling for a  large resolution fixed problem size while the number of
+processing elements are increased. Additionally, the parallel algorithm does
+not make use of any hardware specific routines, and thus is highly portable.
+\end{abstract}
