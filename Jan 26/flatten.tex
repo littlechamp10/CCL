@@ -1,0 +1,22 @@
+\begin{algorithm}[H]
+\small
+{
+	\caption{Pseudo-code for flatten \cite{Wu2009_LRPC}}
+	\label{alg:flatten}
+	\textbf{InOut:} $1D$ array $p$ containing the equivalence info \\
+	\textbf{Input:} Max value of provisional label $count$
+	\begin{algorithmic}[1]
+	\Function{flatten}{$p$,$count$}
+		\State $k \gets 1$
+		\For{$i=1$ to $count$}
+			\If{$p[i] < i$}
+				\State $p[i] \gets p[p[i]]$
+			\Else
+				\State $p[i] \gets k$
+				\State $k++$
+			\EndIf
+		\EndFor
+	\EndFunction
+	\end{algorithmic}	
+}
+\end{algorithm}

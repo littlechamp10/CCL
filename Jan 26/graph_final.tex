@@ -1,0 +1,147 @@
+\begin{figure*}[!ht]
+\begin{center}
+\subfloat[local]{
+\begin{tikzpicture}
+\begin{axis}[%legend pos = outer north east,
+legend columns= -1,
+legend
+entries={image\_1, image\_2,
+image\_3, image\_4, image\_5, image\_6, ideal}, legend to name=named, 
+xlabel=\# Threads,
+ylabel=Speedup,
+every axis y label/.style=
+{at={(ticklabel cs:0.5)},rotate=90,anchor=near ticklabel},
+% symbolic x coords={2,6,12,18,24}
+]
+
+\addplot+[sharp plot] coordinates{
+(2,1.54)
+(6,4.82)
+(12,8.98)
+(18,13.04)
+(24,16.70)
+};
+\addplot+[sharp plot] coordinates {
+(2,1.58)
+(6,5.22)
+(12,9.7)
+(18,13.65)
+(24,16.76)
+};
+\addplot+[sharp plot] coordinates{
+(2,1.45)
+(6,5.12)
+(12,9.53)
+(18,13.77)
+(24,17.74)
+};
+\addplot+[sharp plot] coordinates{
+(2,1.53)
+(6,5.30)
+(12,10.30)
+(18,14.97)
+(24,19.18)
+};
+\addplot+[sharp plot] coordinates{
+(2,1.64)
+(6,5.47)
+(12,10.38)
+(18,15.12)
+(24,19.77)
+};
+
+\addplot+[sharp plot] coordinates{
+(2,1.7)
+(6,5.54)
+(12,10.74)
+(18,15.45)
+(24,20.10)
+};
+\addplot+[sharp plot] coordinates{
+(2,2)
+(6,6)
+(12,12)
+(18,18)
+(24,24)
+};
+%\legend{image\_1,image\_2,image\_3,image\_4,image\_5,image\_6,ideal\_speedup}
+\end{axis}
+\end{tikzpicture}
+\label{line}
+}
+\subfloat[local + merge]{
+\begin{tikzpicture}
+\begin{axis}[%legend pos = north west,
+xlabel=\# Threads,
+ylabel=Speedup,
+every axis y label/.style=
+{at={(ticklabel cs:0.5)},rotate=90,anchor=near ticklabel},
+% symbolic x coords={2,6,12,18,24}
+]
+\addplot+[sharp plot] coordinates{
+(2,1.48)
+(6,4.80)
+(12,8.91)
+(18,12.86)
+(24,16.30)
+};
+
+\addplot+[sharp plot] coordinates {
+(2,1.54)
+(6,5.18)
+(12,9.52)
+(18,13.06)
+(24,15.64)
+};
+\addplot+[sharp plot] coordinates{
+(2,1.40)
+(6,5.11)
+(12,9.49)
+(18,13.69)
+(24,17.59)
+};
+
+\addplot+[sharp plot] coordinates{
+(2,1.49)
+(6,5.29)
+(12,10.23)
+(18,14.75)
+(24,18.73)
+};
+
+\addplot+[sharp plot] coordinates{
+(2,1.60)
+(6,5.46)
+(12,10.34)
+(18,15.02)
+(24,19.58)
+};
+
+
+\addplot+[sharp plot] coordinates{
+(2,1.55)
+(6,5.53)
+(12,10.72)
+(18,15.42)
+(24,20.03)
+};
+\addplot+[sharp plot] coordinates{
+(2,2)
+(6,6)
+(12,12)
+(18,18)
+(24,24)
+};
+%\legend{image\_1,image\_2,image\_3,image\_4,image\_5,image\_6,ideal\_speedup}
+\end{axis}
+\end{tikzpicture}
+% \caption{Speedup for different images and different numbers of threads for local + merge}
+\label{linet}
+}
+\label{speed}
+\ref{named}
+\caption{Speedup for different images and different numbers of threads for NLCD
+data set}
+\end{center}
+\end{figure*}
+

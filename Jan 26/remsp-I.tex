@@ -1,0 +1,48 @@
+\clearpage
+\begin{algorithm}[H]
+\small
+{
+	\caption{Pseudo-code for \nremsp\ Scan Phase}
+	\label{alg:RemSP-I}
+	\textbf{Input:} $2D$ array $image$ containing the pixel values \\
+	\textbf{InOut:} $2D$ array $label$ containing the provisional labels and $1D$ array $p$ containing the equivalence info\\
+	\textbf{Output:} maximum value of provisional label in $count$
+	\begin{algorithmic}[1]
+	\Function{Scan\_CCLRemSP}{$image$}
+		\For{$row$ in $image$}
+			\For{$col$ in $row$}
+				\If{$image(e) = 1$}
+					\If{$image(b) = 1$}
+						\State $copy(b)$
+					\Else
+						\If{$image(c) = 1$}
+							\If{$image(a) = 1$}
+								\State $copy(c,a)$
+							\Else
+								\If{$image(d) = 1$}
+									\State $copy(c,d)$
+								\Else
+									\State $copy(c)$
+								\EndIf
+							\EndIf
+						\Else
+							\If{$image(a) = 1$}
+								\State $copy(a)$
+							\Else
+								\If{$image(d) = 1$}
+									\State $copy(d)$
+								\Else
+									\State {\em new label}
+								\EndIf
+							\EndIf
+						\EndIf
+					\EndIf
+				\EndIf
+			\EndFor
+		\EndFor
+		\State \Return {$count$}
+	\EndFunction
+	\end{algorithmic}
+}	
+\end{algorithm}
+
