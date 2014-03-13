@@ -1,0 +1,22 @@
+\begin{algorithm}[ht!]
+\small
+{
+	\caption{Pseudo-code for \nremsp}
+	\label{alg:RemSP}
+	\textbf{Input:} $2D$ array $image$ containing the pixel values \\
+	\textbf{Output:} $2D$ array $label$ containing the final labels
+	\begin{algorithmic}[1]
+	\Function{\nremsp}{$image$}
+		\State $Scan\_CCLRemSP(image)$ \Comment{Scan Phase of \nremsp}
+		\LineComment $count$ is the max label assigned during Scan Phase
+		\State $flatten(p,count)$ \Comment{Analysis Phase of \nremsp}
+		\For{$row$ in $image$}  \Comment{Labeling Phase of \nremsp}
+			\For{$col$ in $row$} \Comment{$e$ is the current pixel to be labeled}
+				\State $label(e) \gets p[label(e)]$ 
+			\EndFor
+		\EndFor
+	\EndFunction
+	\end{algorithmic}
+}	
+\end{algorithm}
+

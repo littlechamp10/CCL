@@ -1,0 +1,101 @@
+\vspace{\sectionSpace}
+\section{Proposed Algorithm}
+\label{sec:proposed_algorithm}
+
+Throughout the paper, for an $M \times N$ image, we denote $image(a)$ to denote the pixel value of pixel $a$.
+We consider binary images i.e. an image containing two types of pixels:
+object pixel and background pixel. Generally, we consider value of object pixel as 1 and value of background pixel as 0. The connected
+component labeling problem is to assign a label to each object pixel so that connected object pixels have the same label.
+In $2D$ images, there are two ways of defining connectedness: $4$-connectedness and $8$-connectedness. In this paper, we have 
+only used the $8$-connectedness of the pixel.
+
+
+% \vspace{3mm}
+\vspace{\sectionSpace}
+\subsection{\nremsp\ Algorithm}
+
+In \nremsp,\ we have used the decision tree suggested in \lrpc\ (Figure \ref{dtree})
+for scanning and \rems\ union-find algorithm \remsp\ for storing label
+equivalence.
+The full algorithm for \nremsp\ is given as Algorithm \ref{alg:RemSP}.
+
+\input{remsp}
+
+In the scan step of \nremsp, we process image lines one by one using the
+forward scan mask as shown in Figure \ref{fscan1}. We have used the decision tree proposed by \cite{Wu2009_LRPC} for 
+determining the provisional label of current pixel $e$ as we can reduce the number of neighbors using decision tree. Instead of
+examining all four neighbors of pixel, say $e$, i.e. $a$, $b$, $c$ and $d$, we only
+examine the neighbors according to a decision tree as shown in Figure
+\ref{dtree}.
+ Let $label$ denote the $2D$ array storing the labels and let $p$ denote equivalence array 
+ then according to \lrpc\ algorithm,
+three functions used by this decision tree are defined as follows:
+
+$1)$. The one-argument copy function, copy(a), contains one statement:
+					$label(e) = p(label(a))$\\
+$2)$. The two-argument copy function, copy(c,a), contains one statements:
+				$label(e) = merge(p, label(c), label(a))$\\
+$3)$. The new label function sets $count$ as $label(e)$, appends $count$ to array $p$, and increments $count$ by $1$.
+
+\input{figures}
+% \input{remsp-I}
+The implementation of {\em Scan\_CCLRemSP} is given as Algorithm
+\ref{alg:RemSP-I}. However, the implementation of \merge\ operation in our
+proposed algorithm \remsp\ is different from that of in \lrpc.\
+We have used the implementation of union-find proposed by \rems\ 
+\cite{Patwary2010_RemSP, Dijkstra1976_RemSP} for merge operation. \rems\ integrates the {\em union}
+operation with a compression technique known as Splicing $(SP)$. 
+
+In the \merge\ algorithm, if $x$ and $y$ are the nodes to be merged then we set $root_x$ to $x$ and $root_y$ to $y$. 
+When $root_x$ is to be moved to $p(root_x)$, firstly $p(root_x)$ is
+stored in a temporary variable $z$ then $p(root_x)$ is set to $p(root_y)$,
+making the subtree rooted at $root_x$ a sibling of $root_y$ and finally
+$root_x$ is set to $z$. The algorithm for \merge\ is given as Algorithm
+\ref{alg:merge}. After the first step, we carry out the analysis phase using \flatten\ algorithm. In \flatten\ algorithm, we are
+giving smallest equivalent label of every connected component to all the pixels
+which belongs to that connected component. The algorithm also
+generates consecutive labels. The algorithm for \flatten\ is given as Algorithm
+\ref{alg:flatten}. 
+\input{merge}
+\input{flatten}
+
+% \vspace{\sectionSpace}
+%\input{remsp-I}
+\subsection{\aremsp\ Algorithm}
+
+In \aremsp,\ we have used the decision tree suggested in \arun\ 
+for scanning and \rems\ union-find algorithm for storing label equivalence. The
+full algorithm for \aremsp\ is given as Algorithm \ref{alg:ARemSP}.
+
+In the first scan step of \aremsp,\ we process an image two lines at a time and
+two pixels at a time using the mask shown in Figure \ref{fscan2}, which is
+suggested in \cite{He2012_ARun}.
+\input{remsp-I}
+\input{aremsp}
+% \input{remsp-I}
+
+
+
+We assign the label to both $e$ and $g$ simultaneously. If both $e$ and $g$ are
+background pixels, then nothing needs to be done. If $e$ is a foreground pixel and there is no foreground pixel in the mask, we assign a 
+new provisional label to $e$ and if $g$ is a foreground pixel, we will assign
+the label of $e$ to $g$. If there are foreground pixels in the mask, then we assign $e$ any label assigned to 
+foreground pixels. In this case, if there is only one connected component in the mask then there is 
+no need for label equivalence. Otherwise, if there are more than one connected component in the mask and as 
+they are connected to $e$, all the labels of the connected components are
+equivalent labels hence need to be merged. For all the cases, one can refer
+\cite{He2012_ARun}.
+However, our implementation of merge is different from \cite{He2012_ARun}.
+We use the implementation of union-find proposed by {\em Rem} \cite{Patwary2010_RemSP, Dijkstra1976_RemSP} for merge operation in
+\aremsp.\ Similar to \nremsp,\ we use \flatten\ for analysis phase
+and generating consecutive labels. The implementation of {\em Scan\_ARemSP} is given as Algorithm
+\ref{alg:ARemSP-I}.
+
+%\input{aremsp-I}
+% \input{aremsp-I}
+
+
+
+
+
+ 

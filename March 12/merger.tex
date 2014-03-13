@@ -1,0 +1,46 @@
+\begin{algorithm}[ht!]
+\small
+{
+	\caption{Pseudo-code for merger\cite{Patwary2012_PARemSP}}
+	\label{alg:merger}
+	\textbf{Input:} $1D$ array $p$ and two nodes $x$ and $y$ \\
+	\textbf{Output:} The root of united tree 
+	\begin{algorithmic}[1]
+	\Function{merger}{$p$,$x$,$y$} 
+		\State $root_x \gets x, root_y \gets y$
+		\While { $p[root_x] \neq p[root_y]$ }
+			\If {$p[root_x] > p[root_y]$}
+				\If{$root_x = p[root_x]$}
+					\State $omp\_set\_lock(\&(lock\_array[root_x]))$
+					\State $success \gets 0$
+					\If{$root_x = p[root_x]$}
+						\State $p[root_x] \gets p[root_y]$
+						\State $success \gets 1$
+					\EndIf
+					\State $omp\_unset\_lock(\&(lock\_array[root_x]))$
+					\If{$success =1$}  
+						\State break
+					\EndIf
+				\EndIf
+				\State $z \gets p[root_x], p[root_x] \gets p[root_y], root_x \gets z$
+			\Else
+				\If{$root_y = p[root_y]$}
+					\State $omp\_set\_lock(\&(lock\_array[root_y]))$
+					\State $success \gets 0$
+					\If{$root = p[root_y]$}
+						\State $p[root_y] \gets p[root_x]$
+						\State $success \gets 1$
+					\EndIf
+					\State $omp\_unset\_lock(\&(lock\_array[root_y]))$
+					\If{$success =1$}  
+						\State break
+					\EndIf
+				\EndIf
+				\State $z \gets p[root_y], p[root_y] \gets p[root_x], root_y \gets z$
+			\EndIf
+		\EndWhile
+		\State \Return{$p[root_x]$}
+	\EndFunction
+	\end{algorithmic}	
+}
+\end{algorithm}

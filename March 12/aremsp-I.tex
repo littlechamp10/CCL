@@ -1,0 +1,80 @@
+\begin{algorithm}[ht!]
+\small
+{
+	\caption{Pseudo-code for ARemSP Scan Phase}
+	\label{alg:ARemSP-I}
+	\textbf{Input:} $2D$ array $image$ containing the pixel values \\
+	\textbf{InOut:} $2D$ array $label$ containing the provisional labels and $1D$ array $p$ containing the equivalence info\\
+	\textbf{Output:} maximum value of
+	provisional label in $count$
+	\begin{algorithmic}[1]
+	\Function{Scan\_ARemSP}{$image$}
+		\For{$row$ in $image$}
+			\For{$col$ in $row$}
+				\If{$image(e) = 1$}
+					\If{$image(d) = 0$}
+						\If{$image(b) = 1$}
+							\State $label(e) \gets label(b)$
+							\If{$image(f) = 1$}
+								\State $merge(p,label(e),label(f))$ 
+							\EndIf
+						\Else
+							\If{$image(f) = 1$}
+								\State $label(e) \gets label(f)$
+								\If{$image(a) = 1$}
+									\State $merge(p,label(a))$
+								\EndIf
+								\If{$image(c) = 1$}
+									\State $merge(p,label(e),label(c))$
+								\EndIf
+							\Else
+								\If{$image(a) = 1$}
+									\State $label(e) \gets label(a)$
+									\If{$image(c) = 1$}
+										\State $merge(p,label(e),label(c))$
+									\EndIf
+								\Else
+									\If{$image(c) = 1$}
+										\State $label(e) \gets label(c)$
+									\Else
+										\State $label(e) \gets count,$
+										\State $p[count] \gets count,$
+										\State $count++$
+									\EndIf
+								\EndIf
+							\EndIf
+						\EndIf
+					\Else
+						\State $label(e) = label(d)$
+						\If{$image(b) = 0$}
+							\If{$image(c) = 1$}
+								\State $merge(p,label(e),label(c))$
+							\EndIf
+						\EndIf
+					\EndIf
+					\If{$image(g) = 1$}
+						\State $label(g) \gets label(e)$
+					\EndIf
+				\Else
+					\If{$image(g) = 1$}
+						\If{$image(d) = 1$}
+							\State $label(g) \gets label(d)$
+						\Else
+							\If{$image(f) = 1$}
+								\State $label(g) \gets label(f)$
+							\Else
+								\State $label(e) \gets count,$
+								\State $p[count] \gets count,$
+								\State $count++$
+							\EndIf
+						\EndIf
+					\EndIf
+				\EndIf
+			\EndFor
+		\EndFor
+		\State \Return {$count$}
+	\EndFunction
+	\end{algorithmic}	
+}
+\end{algorithm}
+
