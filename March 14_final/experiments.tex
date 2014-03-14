@@ -1,0 +1,133 @@
+\vspace{\sectionSpace}
+\section{Experiments}
+\label{sec:experiments}
+For the experiments we used a computing node of Hopper, a Cray XE6 distributed memory parallel computer. 
+The node has 2 twelve-core AMD ‘MagnyCours’ 2.1-GHz processors and 32 GB DDR3 1333-MHz memory. 
+Each core has its own L1 and L2 caches, with 64 KB and 512 KB, respectively. 
+One 6-MB L3 cache is shared between 6 cores on the MagnyCours processor. 
+All algorithms were implemented in C using OpenMP and compiled with gcc.
+
+Our test data set consists of four types of image data set: Texture, Aerial,
+Miscellaneous and NLCD. First three data sets are taken from the image database of the University of 
+Southern
+California.\footnote{\url{http://sipi.usc.edu/database/}} 
+The fourth data set is taken from US National Cover Database
+$2006$.\footnote{\url{http://dx.doi.org/10.1016/j.cageo.2013.05.014}} All of the
+images are converted to binary images by MATLAB using $im2bw(level)$ function with level value as $0.5$. The function 
+converts the grayscale image to a binary image by replacing all pixels in the input image with luminance greater than 
+0.5 with the value 1 (white) and replaces all other pixels with the value 0 (black). If the input image is not a grayscale image, 
+$im2bw$ converts the input image to grayscale, and then converts this grayscale image to binary(Figure \ref{fig:example}). However, note that our
+algorithm can be easily extended to gray scale images.
+
+
+
+
+
+
+\begin{figure}[ht!]
+        %\label{fig:syn_time_1}
+	\begin{center}
+	\subfloat[{Original Image}]
+        {
+                \label{fig:color}
+                \includegraphics[width=\scaleLarge]{color.pdf}
+        }
+	\hspace{3mm}
+	\subfloat[{Binary Image}]
+        {
+                \label{fig:bw}
+                \includegraphics[width=\scaleLarge]{bw.pdf}
+        }
+	\end{center}
+	\caption{Example of color image to binary image}
+	\label{fig:example}
+%\vspace{\afterfigure}
+%\vspace{\afterfigure}
+%\vspace{\afterfigure}
+%\vspace{\afterfigure}
+\end{figure}
+%\input{aremsp-I}
+
+%\input{bar_graph}
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+ybar,
+enlargelimits=0.15,
+legend pos = north west,
+xlabel=\#Threads,
+ylabel=Speedup,
+every axis y label/.style=
+{at={(ticklabel cs:0.5)},rotate=90,anchor=center},
+symbolic x coords={2,6,8,16,24},
+xtick=data,
+]
+\addplot
+coordinates {
+(2,1.57)
+(6,4.20)
+(8,5.46)
+(16,9.58)
+(24,10.08)
+
+};
+\addplot
+coordinates {
+(2,1.53)
+(6,3.60)
+(8,4.44)
+(16,5.96)
+(24,5.01)
+};
+\addplot
+coordinates {
+(2,1.56)
+(6,4.16)
+(8,5.14)
+(16,7.10)
+(24,6.77)
+};
+
+\legend{Aerial,Miscellaneous,Texture}
+\end{axis}
+\end{tikzpicture}
+\caption{Speedup for different images and different numbers of threads for
+Aerial, Texture \& Miscellaneous data set}
+\label{fig:bar}
+\end{figure}
+Texture, Aerial and Miscellaneous data set contain images of size $1$ MB or less.
+NCLD data set contains images of size bigger than $12$ MB. The biggest image in the data set is $465.20$ MB.
+
+Firstly, we performed the experiment over all the sequential algorithms. The
+experimental results are shown in Table \ref{table:seq}. In the table, we have
+shown the minimum, maximum and average execution time of all the four data sets.
+The execution time of \aremsp\ is lowest among all
+the sequential algorithms. Thus \aremsp\ is best among all the sequential
+algorithms.
+
+Next, we show our results for the parallel algorithm \paremsp\ over all the images.
+We have shown the speedup for data sets (except NCLD image data set) in Figure \ref{fig:bar}.
+The minimum, maximum and average execution time of \paremsp\ for all the datasets is also shown in Table \ref{table:par}.
+We get a maximum speedup of $10$ in this case as the images are $1$ MB or less in size. The speedup also decreases in some cases as the
+number of threads increases.
+This is because the image size is small so as the number of threads increases,
+the threads will have less work to perform and the overhead due to thread
+creation will increase.
+Figure \ref{fig:line}-\ref{fig:linet} shows the speedup of the algorithm for 
+NCLD image data set. The size of the images are given in Table \ref{table:imag_size}.
+We get a maximum speedup of $20.1$ on $24$ cores for image of size $465.20$ MB.
+Figure \ref{fig:line} shows the speedup for {\em Phase-$I$} of \paremsp\ i.e. 
+the local computation and Figure \ref{fig:linet} shows the overall speedup (i.e.
+local + merge). We can see that there is not significant difference between both speedups, implying that merge operation
+does not have a significant overhead. 
+Also as can be seen from the graph, as the image size increases, speedup also
+increases. Therefore, our parallel implementation is able to achieve near linear
+speed for large data sets.
+
+\input{table}
+\input{image_size}
+\input{parallel_table}
+\input{graph_final}
+ 
+

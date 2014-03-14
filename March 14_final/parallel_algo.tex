@@ -1,0 +1,37 @@
+\vspace{\sectionSpace}
+\section{Parallelizing \aremsp\ Algorithm}
+\label{sec:parallel_algo}
+
+We now describe the parallel implementation of \aremsp\ algorithm 
+on a shared memory system. We make the assumption about memory
+model as stated in {\em OpenMP} regarding the atomic directive. We assume that
+memory read/write operations are atomic and any operations issued concurrently by different processors will be executed in some unknown sequential order if
+no ordering constructs are being used. However, two dependent operations issued
+by the same processor will always be applied in the same order as they are
+issued.
+%\input{aremsp-I}
+\input{paremsp}
+\input{merger}
+In \paremsp, the image is
+divided row-wise into chunks of equal size and given to the threads. In the first step,
+each thread runs {\em Scan Phase} of \aremsp\ on it's chunk simultaneously. We
+initialize the label to the start index of the thread for every thread so that no 
+two pixels in the image have the same label after the first step. After the first step, 
+each pixel is given a provisional label. Next, the pixels at the boundary of
+each chunk need to be merged to get the final labels. In the second step, we merge the boundary pixels using parallel 
+implementation of Rem's Algorithm \cite{Patwary2012_PARemSP} which we call as
+\merger.\ In \merger,\ if a thread wants to perform merging, it will first
+acquire the necessary lock. Once it gets the lock, it will check whether the
+node is still a root node. If yes, then the thread
+will set the parent pointer and release the lock. On the other
+hand if some other processor has altered the parent pointer so
+that the node is no longer a root, the processor will release
+the lock and continue executing the algorithm from its current
+position. For complete reference, one can refer \cite{Patwary2012_PARemSP}. We
+implement the parallel algorithm using OpenMP directives {\em pragma omp parallel} and {\em pragma omp for}. 
+The pseudo code of \merger\ is given as Algorithm \ref{alg:merger}. 
+The pseudo code of \paremsp\ is given as Algorithm
+\ref{alg:PARemSP}.
+%\input{paremsp}
+% \input{merger}
+  
