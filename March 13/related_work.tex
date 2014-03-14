@@ -1,0 +1,53 @@
+\vspace{\sectionSpace}
+\section{Related Work}
+\label{sec:related_works}
+
+As mentioned in \cite{Suzuki2003_Linear}, there exist different types of CCL
+algorithms. Repeated pass or multi pass algorithm repeatedly scans the image
+forward and backward alternatively to give labels until no further changes can
+be made to the assigned
+pixels\cite{Haralick1981_Repeated,Hashizume1990_Algorithm}. 
+The algorithm in \cite{Suzuki2003_Linear}, which we call as {\em Suzuki's} algorithm modifies the
+conventional multi pass algorithm using one-dimensional table. There exists a
+parallel implementation of {\em Suzuki's} algorithm using OpenMP in
+\cite{Niknam2010_Parallel}. According to experimental results in
+\cite{Niknam2010_Parallel}, the parallel implementation gets maximum speedup of
+2.5 on 4 threads.
+
+In any two-pass algorithm, there are two steps in scanning step: $1)$ examining neighbors of current pixel which already
+assigned labels to determine label for the current pixel, $2)$ storing label equivalence information to speed up the algorithm. 
+
+The algorithm in \cite{Wu2009_LRPC}, which we refer to as \lrpc, provides two strategies to improve the running time of the algorithm.
+First strategy employs a decision tree, which reduces the average number of neighbors accessed by a factor of two.
+Second strategy replaces the conventional pointer based union-find algorithm, which is used for storing label equivalence,
+by adopting array based union-find algorithm that uses less memory. The
+union-find algorithm is implemented using Link by Rank and Path Compression technique. %For our reference, we call this algorithm \lrpc.
+
+The union-find data structure in \cite{He2008_Run} is replaced by a different data structure to process label equivalence
+information. In this algorithm, at any point, all provisional labels that are assigned to a connected 
+component found thus far during the first scan are combined in a set $S(r)$, where $r$ is the smallest label and is 
+referred to as the representative label. The algorithm employs $rtable$ for storing representative label of a set, $next$ to 
+find the next element in the set and $tail$ to find the last element of the set.
+
+%We have implemented an algorithm with decision tree along with the above data structure. We will call it as Run for our reference.
+
+In another strategy, which we call \arun, the first part of scanning step employs a scanning technique, which processes image two lines 
+at a time and process two image pixels at a time \cite{He2012_ARun}. This
+algorithm uses the same data structure given in \cite{He2008_Run} for processing label equivalence information. The scanning technique reduces the number lines to be
+processed by half thereby improving the speed of the two-pass CCL method. %For our reference, we call this algorithm \arun.
+
+In this paper, we provide two different implementations of two-pass CCL algorithm. These two algorithms are different in their
+first scan step. In the first implementation called \nremsp, we have used the 
+decision tree suggested by the \lrpc\ algorithm for the first part of scanning step but for the second part we have used
+\rems\ union-find approach instead of Link by Rank and Path Compression technique. The union-find algorithm
+maintains a collection of disjoint sets where each set represents connected elements.
+\cite{Patwary2010_RemSP} compares all of the different variations of union-find algorithms over different graph data sets and found that
+\rems\ implementation is best among all the variations. Thus in our second implementation, called \aremsp, we process the image lines
+two by two as suggested by \cite{He2012_ARun} but for the second step
+we use \remsp\ instead of the data structure used by \cite{He2012_ARun}.
+
+We have compared both of our proposed implementations with \lrpc, \run, and
+\arun\ algorithms and find that \aremsp\ performs best among all the algorithms.
+Finally we have also provided a shared memory parallel implementation of
+\aremsp\ called \paremsp\ using OpenMP.
+We use the parallel implementation of \remsp\ given in \cite{Patwary2012_PARemSP}. 
