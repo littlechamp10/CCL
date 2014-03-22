@@ -1,0 +1,41 @@
+\begin{table}[h]
+\caption{Execution time [{\em msec}] of \paremsp\ algorithm for various \#
+threads}
+\centering
+\begin{tabular}{c c c c c c} 
+\hline\hline
+Image type &  & 2 & 6 & 16 & 24\\ [0.5ex] 
+\hline 
+Arial & Min & 1.39 & 0.84 & 1.02 & 1.38 \\ 
+ & Average & 7.92	& 3.03	& 1.87	& 2.15
+\\
+ & Max & 46.86 &	16.72 & 	7.32 &	6.97
+ \\
+[1ex]
+ \hline
+Texture & Min & 1.09 & 0.62 & 	0.93 &	1.36
+ \\
+ & Average & 4.91 &	1.99 &	1.45	& 1.82
+ \\
+ & Max & 9.75 &	3.56 &	2.11 &	2.34
+\\
+[1ex]
+ \hline
+Miscellaneous & Min & 0.36	& 0.36	& 0.79	& 1.18
+\\
+ & Average & 1.99	& 0.97	& 1.05	& 1.46
+ \\
+ & Max &7.96	& 3.24	& 1.91	& 2.27
+\\
+ [1ex]
+\hline
+NLCD & Min & 2.52& 1.16&	1.32&	1.67
+\\
+& Average & 162.86&	58.50&	20.20&	13.47
+ \\
+& Max & 676.41	&184.71	&78.33	&51.00
+ \\[1ex]
+\hline
+\end{tabular}
+\label{table:seq} 
+\end{table}
